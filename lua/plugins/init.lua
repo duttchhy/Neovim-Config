@@ -4,9 +4,10 @@ return {
   require("plugins.treesitter"),
   require("plugins.telescope"),
   require("plugins.whichkey"),
-require("plugins.neotree"),
+  require("plugins.neotree"),
   require("plugins.gitsigns"),
   require("plugins.mason"),
+  require("plugins.alpha"),
   -- Theming
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }

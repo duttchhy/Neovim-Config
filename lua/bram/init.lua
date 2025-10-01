@@ -21,6 +21,7 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Add my plugins
 require("bram.remap")
+require("bram.colors")()
 -- FF
 local wk = require("which-key")
 wk.register({
