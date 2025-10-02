@@ -13,5 +13,13 @@ return {
   require("plugins.luarocks"),
   -- Theming
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  -- Lualine
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("plugins.lualine")()
+    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
 
