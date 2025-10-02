@@ -7,34 +7,58 @@
 --\/             \/      \/           |
 --------------------------------------|
 -- ==============================
--- PERSONAL KEYMAPS (remap.lua)
+-- PERSONAL REMAPS (non-plugin)
 -- ==============================
-local wk = require("which-key")
 
--- ------------------------------
--- Core keymaps
--- ------------------------------
-vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "Yank Line to Clipboard" })
-vim.keymap.set("n", "<leader>y", '"+y', { desc = "Yank to Clipboard" })
-vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without affecting registers" })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make File Executable" })
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
--- quickfix navigation
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Prev Location" })
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next Location" })
+-- ==============================
+-- VISUAL MODE
+-- ==============================
+-- Move selected text up/down
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
--- error helpers
-vim.keymap.set("n", "<leader>ea", 'oassert.NoError(err) <Esc>', { desc = "Insert assert.NoError" })
-vim.keymap.set("n", "<leader>el", 'ologger.Error(err) <Esc>', { desc = "Insert logger.Error" })
-vim.keymap.set("n", "<leader>ee", 'oreturn err<Esc>', { desc = "Insert return err" })
-vim.keymap.set("n", "<leader>ef", 'olog.Fatalf("%v", err)<Esc>', { desc = "Insert log.Fatalf" })
+-- Greatest remap ever: keep paste buffer
+keymap("x", "<leader>P", [["_dP]], opts) -- NOTE: <leader>p is taken by plugin config, so use <leader>P instead
 
--- ------------------------------
--- Which-key group labels only
--- ------------------------------
-wk.add({
-  { "<leader>e", group = "Error Helpers" },
-  { "<leader>f", group = "Find" },
-  { "g", group = "LSP" },
-})
+-- ==============================
+-- NORMAL MODE
+-- ==============================
+-- Keep cursor position when joining lines
+keymap("n", "J", "mzJ`z", opts)
+
+-- Half-page jumping keeps cursor centered
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+
+-- Next/Prev search result stays centered
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+
+-- Re-indent paragraph and return
+keymap("n", "=ap", "ma=ap`a", opts)
+
+-- Quickfix navigation
+keymap("n", "<C-k>", "<cmd>cnext<CR>zz", opts)
+keymap("n", "<C-j>", "<cmd>cprev<CR>zz", opts)
+
+-- Location list navigation
+-- (leader>j/k already used by which-key, so mapped to q/j here)
+keymap("n", "<leader>qj", "<cmd>lprev<CR>zz", opts)
+keymap("n", "<leader>qk", "<cmd>lnext<CR>zz", opts)
+
+-- Disable Ex mode
+keymap("n", "Q", "<nop>", opts)
+
+-- Escape in insert mode
+keymap("i", "<C-c>", "<Esc>", opts)
+
+-- ==============================
+-- TMUX SESSIONIZER (external tool)
+-- ==============================
+keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", opts)
+keymap("n", "<M-h>", "<cmd>silent !tmux-sessionizer -s 0 --vsplit<CR>", opts)
+keymap("n", "<M-H>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>", opts)
 
