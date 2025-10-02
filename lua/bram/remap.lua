@@ -61,11 +61,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d") -- delete without affecting re
 vim.keymap.set("i", "<C-c>", "<Esc>") -- exit insert mode
 
 -- ==============================
--- DISABLED / NO-OPS
--- ==============================
-vim.keymap.set("n", "Q", "<nop>") -- disable Q
-
--- ==============================
 -- TERMINAL / TMUX
 -- ==============================
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
