@@ -11,7 +11,8 @@ vim.g.mapleader = " "
 -- VIM Explorer
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 -- Quit Neovim
-vim.keymap.set("n", "<leader>Q", vim.cmd.q)
+vim.keymap.set("n", "<leader>q", vim.cmd.q)
+vim.keymap.set("n", "<leader>Q", vim.cmd.qall)
 -- Lazy Keymaps
 require("lazy").setup({})
 

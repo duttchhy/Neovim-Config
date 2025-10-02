@@ -27,7 +27,7 @@ return {
 			dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 		}
 
-		dashboard.section.footer.val = "Happy coding! 🚀"
+		dashboard.section.footer.val = "🚀 Rocket Ship 8=======D 🚀"
 
 		-- Layout
 		alpha.setup(dashboard.config)

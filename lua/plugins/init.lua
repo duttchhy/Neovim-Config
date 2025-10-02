@@ -8,6 +8,8 @@ return {
   require("plugins.gitsigns"),
   require("plugins.mason"),
   require("plugins.alpha"),
+  require("plugins.mini"),
+  require("plugins.luarocks"),
   -- Theming
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
