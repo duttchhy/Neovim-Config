@@ -24,5 +24,13 @@ return {
       vim.g.undotree_SetFocusWhenToggle = 1 -- focus on Undotree when toggled
     end,
   },
+  --Comment Nvim
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    config = function()
+      require("Comment").setup()
+    end,
+  },
 }
 
