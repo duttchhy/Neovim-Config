@@ -49,4 +49,20 @@
 
 ## Optional / Not Loaded
 - **[undotree](https://github.com/mbbill/undotree)** – Undo history visualizer (`<leader>u` to toggle).  
+---
+
+### Steps to Install from source:
+```sh
+# download new AppImage
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+
+# remove old /opt/nvim, extract new version, and symlink again
+rm -rf /opt/nvim
+./nvim-linux-x86_64.appimage --appimage-extract
+mv squashfs-root /opt/nvim
+ln -sf /opt/nvim/AppRun /usr/local/bin/nvim
+
+```
+---
+
 
