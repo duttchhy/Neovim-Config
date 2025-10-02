@@ -7,11 +7,12 @@ return {
   require("plugins.telescope"),
   require("plugins.whichkey"),
   require("plugins.dependencies"),
-  require("plugins.neotree"),
+  -- require("plugins.neotree"),
   require("plugins.gitsigns"),
   require("plugins.mason"),
   require("plugins.alpha"),
   require("plugins.mini"),
+  require("plugins.ollama_copilot"),
   require("plugins.luarocks"),
   -- Theming
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },

@@ -20,19 +20,15 @@ return {
 
     require("mason-lspconfig").setup({
       ensure_installed = { "lua_ls", "pyright", "ts_ls" },
-      automatic_enable = true,
+      automatic_installation = true,
     })
 
-    -- Configure LSP servers using vim.lsp.config
+    -- Modern API: vim.lsp.config
     vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
-          runtime = {
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            globals = { "vim" },
-          },
+          runtime = { version = "LuaJIT" },
+          diagnostics = { globals = { "vim" } },
         },
       },
     })
