@@ -4,6 +4,7 @@ return {
   require("plugins.treesitter"),
   require("plugins.telescope"),
   require("plugins.whichkey"),
+  require("plugins.dependencies"),
   require("plugins.neotree"),
   require("plugins.gitsigns"),
   require("plugins.mason"),
