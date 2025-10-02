@@ -1,6 +1,0 @@
-lua/plugins/gitsigns.lua:vim.keymap.set(mode, l, r, opts)
-lua/plugins/telescope.lua:vim.keymap.set('n', '<leader>ff', builtin.find_files, vim.tbl_extend("force", opts, { desc = "Telescope find files" })
-lua/plugins/telescope.lua:vim.keymap.set('n', '<leader>fg', builtin.live_grep, vim.tbl_extend("force", opts, { desc = "Telescope live grep" })
-lua/plugins/telescope.lua:vim.keymap.set('n', '<leader>fb', builtin.buffers, vim.tbl_extend("force", opts, { desc = "Telescope buffers" })
-lua/plugins/telescope.lua:vim.keymap.set('n', '<leader>fh', builtin.help_tags, vim.tbl_extend("force", opts, { desc = "Telescope help tags" })
-lua/plugins/treesitter.lua:vim.keymap.set("n", "<leader>tp", ":TSPlaygroundToggle<CR>", { desc = "Toggle Treesitter Playground" })

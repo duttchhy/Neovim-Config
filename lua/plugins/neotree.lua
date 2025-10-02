@@ -34,12 +34,12 @@ return {
           leave_dirs_open = false,
         },
         use_libuv_file_watcher = true,
-        window = {
-          mappings = {
-            ["<c-p>"] = "toggle_preview",  -- preview file
-            ["<c-v>"] = "vsplit_preview",
-          },
-        },
+        -- window = {
+          -- mappings = {
+            -- ["<c-p>"] = "toggle_preview",  -- preview file
+            -- ["<c-v>"] = "vsplit_preview",
+          -- },
+        -- },
       },
       buffers = {
         follow_current_file = {

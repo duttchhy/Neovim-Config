@@ -20,22 +20,7 @@ return {
         g = false,
       },
     },
-    win = {  -- opts.window is deprecated, use opts.win
-      border = "rounded",
-      position = "bottom",
-      margin = { 1, 1, 1, 1 },
-      padding = { 2, 2, 2, 2 },
-    },
-    layout = {
-      height = { min = 4, max = 25 },
-      width = { min = 20, max = 50 },
-      spacing = 5,
-      align = "center",
-    },
-    spec = {}, -- empty, we populate below
-    show_help = true,
-    show_keys = true,
-  },
+},
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)

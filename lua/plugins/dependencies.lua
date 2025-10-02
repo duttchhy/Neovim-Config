@@ -5,7 +5,17 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("snacks").setup()
+      require("snacks").setup({
+        dashboard = {
+          sections = {
+            todos = {
+              title = "TODOs",
+              cmd = "TodoTelescope",  -- opens the todo-comments Telescope picker
+              icon = "",
+            },
+          },
+        },
+      })
     end,
   },
 
@@ -18,10 +28,9 @@ return {
       { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" },
     },
     init = function()
-      -- Configure Undotree to open on the right
-      vim.g.undotree_WindowLayout = 2      -- 2 = right side, 1 = left
-      vim.g.undotree_SplitWidth = 30       -- width of the Undotree window
-      vim.g.undotree_SetFocusWhenToggle = 1 -- focus on Undotree when toggled
+      vim.g.undotree_WindowLayout = 2      -- right side
+      vim.g.undotree_SplitWidth = 30       -- window width
+      vim.g.undotree_SetFocusWhenToggle = 1
     end,
   },
 
@@ -33,30 +42,31 @@ return {
       require("Comment").setup()
     end,
   },
-  -- TodoTxt
+
+  -- TODO Comments
   {
-    "phrmendes/todotxt.nvim",
-    cmd = { "TodoTxt", "DoneTxt" },
-    opts = {
-      todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
-      donetxt = vim.env.HOME .. "/Documents/notes/done.txt",
-      ghost_text = {
-        enable = true,
-        mappings = {
-          ["(A)"] = "now",
-          ["(B)"] = "next",
-          ["(C)"] = "today",
-        },
-      },
-    },
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
     config = function()
-      vim.filetype.add({
-        filename = {
-          ["todo.txt"] = "todotxt",
-          ["done.txt"] = "todotxt",
+      require("todo-comments").setup({
+        keywords = {
+          FIX = { icon = " ", color = "error" },
+          TODO = { icon = " ", color = "info" },
+          HACK = { icon = " ", color = "warning" },
+          WARN = { icon = " ", color = "warning" },
+          PERF = { icon = " ", color = "hint" },
+          NOTE = { icon = " ", color = "hint" },
         },
+        highlight = {
+          multiline = true,
+          pattern = [[.*<(KEYWORDS)\s*:]],
+        },
+        merge_keywords = true,
       })
-      require("todo").setup()
+
+      -- Telescope integration
+      vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
     end,
   },
 }
