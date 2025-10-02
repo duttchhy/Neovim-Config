@@ -24,12 +24,39 @@ return {
       vim.g.undotree_SetFocusWhenToggle = 1 -- focus on Undotree when toggled
     end,
   },
-  --Comment Nvim
+
+  -- Comment Nvim
   {
     "numToStr/Comment.nvim",
     lazy = false,
     config = function()
       require("Comment").setup()
+    end,
+  },
+  -- TodoTxt
+  {
+    "phrmendes/todotxt.nvim",
+    cmd = { "TodoTxt", "DoneTxt" },
+    opts = {
+      todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
+      donetxt = vim.env.HOME .. "/Documents/notes/done.txt",
+      ghost_text = {
+        enable = true,
+        mappings = {
+          ["(A)"] = "now",
+          ["(B)"] = "next",
+          ["(C)"] = "today",
+        },
+      },
+    },
+    config = function()
+      vim.filetype.add({
+        filename = {
+          ["todo.txt"] = "todotxt",
+          ["done.txt"] = "todotxt",
+        },
+      })
+      require("todo").setup()
     end,
   },
 }

@@ -1,4 +1,6 @@
 -- ~/.config/nvim/lua/plugins.lua
+vim.g.mapleader = ' '
+vim.g.amplocalleader = ' '
 return {
 -- Plugins
   require("plugins.treesitter"),

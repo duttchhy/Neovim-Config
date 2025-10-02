@@ -69,7 +69,7 @@ return {
       },
 
       -- ==============================
-      -- SEARCH / QUICKFIX arrow alternatives (do not duplicate remaps.lua)
+      -- SEARCH / QUICKFIX 
       -- ==============================
       { lhs = "<A-Up>", rhs = "Nzzzv", desc = "Prev Search Result", mode = "n" },
       { lhs = "<A-Down>", rhs = "nzzzv", desc = "Next Search Result", mode = "n" },
