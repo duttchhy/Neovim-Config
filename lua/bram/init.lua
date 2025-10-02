@@ -46,8 +46,8 @@ vim.o.inccommand = 'split'   -- preview search/replace changes
 -- COLOURS AND UI
 -- ==============================
 vim.o.termguicolors = true
-vim.o.colorcolumn = "80"
-vim.o.signcolumn = "yes"
+--vim.o.colorcolumn = "80"
+--vim.o.signcolumn = "yes"
 
 -- ==============================
 -- FILE HANDLING
@@ -73,6 +73,8 @@ vim.opt.isfname:append("@-@")  -- allow '@-@' in filenames
 -- ==============================
 -- KEYMAPS
 -- ==============================
+vim.g.mapleader = ' '
+vim.g.amplocalleader = ' '
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')  -- clear search highlight
 
 -- Undotree toggle keybind
@@ -83,18 +85,4 @@ vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = "Toggle Und
 -- ==============================
 require("bram.remap")
 require("bram.colors")()
-
--- ==============================
--- WHICH-KEY / FIND
--- ==============================
-local wk = require("which-key")
-wk.register({
-  f = {
-    name = "Find",
-    f = { "<cmd>Telescope find_files<cr>", "Find files" },
-    g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-  },
-}, { prefix = "<leader>" })
 

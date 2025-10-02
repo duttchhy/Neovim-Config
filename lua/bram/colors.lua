@@ -1,5 +1,14 @@
--- colors.lua
--- Load Catppuccin Macchiato theme
+--------------------------------------|
+--__________                          |
+--\______   \____________    _____    |
+--|    |  _/\_  __ \__  \  /     \    |
+--|    |   \ |  | \// __ \|  Y Y  \   |
+--|______  / |__|  (____  /__|_|  /   |
+--\/             \/      \/           |
+--------------------------------------|
+-- COLOURS!
+--------------------------------------
+-- Catppuccin Macchiato
 return function()
   -- Check if Catppuccin is installed
   local status_ok, catppuccin = pcall(require, "catppuccin")
