@@ -97,6 +97,7 @@ vim.keymap.set("i", "'", "''<Left>")
 vim.keymap.set("i", "(", "()<Left>")
 vim.keymap.set("i", "[", "[]<Left>")
 vim.keymap.set("i", "{", "{}<Left>")
+vim.keymap.set("i", "<", "<><Left>")
 
 vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O", { noremap = true, silent = true })
 vim.keymap.set("i", "{;<CR>", "{<CR>};<ESC>O", { noremap = true, silent = true })

@@ -9,6 +9,7 @@ return {
   require("plugins.dependencies"),
   -- require("plugins.neotree"),
   require("plugins.gitsigns"),
+  require("plugins.harpoon"),
   require("plugins.mason"),
   require("plugins.alpha"),
   require("plugins.mini"),
