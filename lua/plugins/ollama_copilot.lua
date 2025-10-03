@@ -59,27 +59,27 @@ return {
   ------------------------------------------------------------------------
   -- Ollama-Copilot for AI code suggestions
   ------------------------------------------------------------------------
-  {
-    "Jacob411/Ollama-Copilot",
-    event = "VeryLazy",
-    opts = {
-      ollama_url = "http://localhost:11434",
-      model_name = "codellama:7b-code",
-      stream_suggestion = true,
-      ollama_model_opts = { num_predict = 40, temperature = 0.1 },
-      filetypes = {
-        "python", "javascript", "typescript", "html", "css", "lua", "java", "markdown",
-      },
-      keymaps = {
-        accept_suggestion = "<C-l>",
-        next_suggestion = "<C-n>",
-        prev_suggestion = "<C-p>",
-        toggle_suggestion = "<C-\\>",
-      },
-      python_command = "python3",
-    },
-    config = function(_, opts)
-      require("OllamaCopilot").setup(opts)
-    end,
-  },
+--  {
+--    "Jacob411/Ollama-Copilot",
+--    event = "VeryLazy",
+--    opts = {
+--      ollama_url = "http://localhost:11434",
+--      model_name = "codellama:7b-code",
+--      stream_suggestion = true,
+--      ollama_model_opts = { num_predict = 40, temperature = 0.1 },
+--      filetypes = {
+--        "python", "javascript", "typescript", "html", "css", "lua", "java", "markdown",
+--      },
+--      keymaps = {
+--        accept_suggestion = "<C-l>",
+--        next_suggestion = "<C-n>",
+--        prev_suggestion = "<C-p>",
+--        toggle_suggestion = "<C-\\>",
+--      },
+--      python_command = "python3",
+--    },
+--    config = function(_, opts)
+--      require("OllamaCopilot").setup(opts)
+--    end,
+--  },
 }

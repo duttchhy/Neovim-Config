@@ -1,23 +1,8 @@
 return {
-	-- Snacks
-	{
-		"folke/snacks.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("snacks").setup({
-				dashboard = {
-					sections = {
-						todos = {
-							title = "TODOs",
-							cmd = "TodoTelescope",  -- opens the todo-comments Telescope picker
-							icon = "",
-						},
-					},
-				},
-			})
-		end,
-	},
+-- devicons
+    {
+        "nvim-tree/nvim-web-devicons", opts = {} 
+    },
 	-- Undotree
 	{
 		"mbbill/undotree",
