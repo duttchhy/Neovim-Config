@@ -25,6 +25,7 @@ __________
 - **[nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** – File operations integrated with Neo-tree.  
 - **[nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker)** – Pick windows when performing operations.  
 - **[plenary.nvim](https://github.com/nvim-lua/plenary.nvim)** – Lua utilities used by Neo-tree and other plugins.  
+- **[undotree](https://github.com/mbbill/undotree)** – Undo history visualizer (`<leader>u` to toggle).  
 
 ## LSP & Development
 - **[mason.nvim](https://github.com/williamboman/mason.nvim)** – Package manager for LSPs, DAPs, linters, and formatters.  
@@ -45,27 +46,30 @@ __________
 
 ## Icons
 - **[nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** – File type icons for statuslines, trees, and more.  
-
-## Optional / Not Loaded
-- **[undotree](https://github.com/mbbill/undotree)** – Undo history visualizer (`<leader>u` to toggle).  
 ---
 ## Dependencies
+ - ripgrep
  - Luarocks
  - cmake
  - git
  - python3
+ - cargo
+ - javac
 
 ### Steps to Install from source:
 ```sh
-# download new AppImage
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-
 # remove old /opt/nvim, extract new version, and symlink again
 rm -rf /opt/nvim
+# download new AppImage
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+# add execute permissions
+sudo chmod u+x nvim-linux-x86_64.appimage
+# Use App image extract if outdate FUSE
 ./nvim-linux-x86_64.appimage --appimage-extract
+# Install it
 mv squashfs-root /opt/nvim
+# Symlink
 ln -sf /opt/nvim/AppRun /usr/local/bin/nvim
-
 ```
 ---
 
