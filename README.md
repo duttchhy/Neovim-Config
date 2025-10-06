@@ -1,14 +1,12 @@
 # My Rice for Neovim
 
---------------------------------------
---__________                          
---\______   \____________    _____    
---|    |  _/\_  __ \__  \  /     \   
---|    |   \ |  | \// __ \|  Y Y  \  
---|______  / |__|  (____  /__|_|  /  
---\/             \/      \/          
---------------------------------------
-
+__________                          
+\______   \____________    _____    
+|    |  _/\_  __ \__  \  /     \   
+|    |   \ |  | \// __ \|  Y Y  \  
+|______  / |__|  (____  /__|_|  /  
+\/             \/      \/          
+---
 > No, I will not explain myself
 
 ## Dashboard & Aesthetic
@@ -50,6 +48,11 @@
 ## Optional / Not Loaded
 - **[undotree](https://github.com/mbbill/undotree)** – Undo history visualizer (`<leader>u` to toggle).  
 ---
+## Dependencies
+ - Luarocks
+ - cmake
+ - git
+ - python3
 
 ### Steps to Install from source:
 ```sh
