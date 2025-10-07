@@ -2,10 +2,10 @@
 ```
 __________
 \______   \____________    _____
-|    |  _/\_  __ \__  \  /     \
-|    |   \ |  | \// __ \|  Y Y  \
-|______  / |__|  (____  /__|_|  /
-\/             \/      \/
+ |    |  _/\_  __ \__  \  /     \
+ |    |   \ |  | \// __ \|  Y Y  \
+ |______  / |__|  (____  /__|_|  /
+        \/             \/      \/
 ```
 ---
 > No, I will not explain myself
@@ -58,6 +58,14 @@ __________
 
 ### Steps to Install from source:
 ```sh
+#Download prereqs
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install curl ripgrep fd-find wget fontconfig git unzip cmake cargo luarocks python3 tar -y
+
+# Directory setup
+mkdir -p ~/.config && cd ~/.config
+cargo install --locked tree-sitter-cli
+
 # remove old /opt/nvim, extract new version, and symlink again
 rm -rf /opt/nvim
 # download new AppImage
@@ -70,6 +78,23 @@ sudo chmod u+x nvim-linux-x86_64.appimage
 mv squashfs-root /opt/nvim
 # Symlink
 ln -sf /opt/nvim/AppRun /usr/local/bin/nvim
+git clone https://git.duttchhy.com/bram/nvim.git && cd nvim
+
+# Lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+
+# Nerd font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Ubuntu.zip
+mkdir -p ~/.local/share/fonts
+unzip Ubuntu.zip -d ~/.local/share/fonts/Ubuntu
+fc-cache -fv
+rm Ubuntu.zip
+
+# Clean up
+sudo apt autoremove -y && sudo apt autoclean -y
 ```
 ---
 
