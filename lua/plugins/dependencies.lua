@@ -15,6 +15,13 @@ return {
 			vim.g.undotree_WindowLayout = 2      -- right side
 			vim.g.undotree_SplitWidth = 30       -- window width
 			vim.g.undotree_SetFocusWhenToggle = 1
+
+            -- Neovim undo directory setup
+            vim.opt.undofile = true
+            vim.opt.undodir = vim.fn.expand("~/.config/vim/undo")
+
+            -- Create directory if it doesn't exist
+            vim.fn.mkdir(vim.opt.undodir:get(), "p")
 		end,
 	},
 
