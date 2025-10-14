@@ -4,9 +4,7 @@
 -- |    |   \ |  | \// __ \|  Y Y  \
 -- |______  / |__|  (____  /__|_|  /
 --        \/             \/      \/ 
--- Initial Test
--- print("Pee Pee Poo Poo")
-
+vim.g.lazyvim_picker = "telescope"
 -- ==============================
 -- BASIC SETTINGS
 -- ==============================
@@ -14,12 +12,11 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
--- vim.o.cursorcolumn = true     -- vertical highlight of cursor column
 vim.o.scrolloff = 8
 vim.o.wrap = false
 vim.o.breakindent = true
 vim.o.updatetime = 50
-vim.o.mouse = 'a'
+vim.o.mouse = ""
 vim.o.confirm = true
 
 -- ==============================
@@ -30,12 +27,14 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = true       -- better than just `autoindent`
-
+vim.opt.autoindent = true
+vim.opt.smarttab = true
+vim.opt.backspace = { "start", "eol", "indent" }
 -- ==============================
 -- TEXT / FORMATTING
 -- ==============================
 vim.o.textwidth = 80           -- auto-wrap text at 80 cols
---vim.o.colorcolumn = "80"      -- visible margin if you want instead of wrap
+vim.opt.formatoptions:append({ "r" })   -- Continue block comments with `*`
 
 -- ==============================
 -- LIST AND DISPLAY CHARACTERS
@@ -49,25 +48,32 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.hlsearch = true          -- highlight matches
 vim.o.incsearch = true         -- show matches as you type
 vim.o.inccommand = 'split'     -- live preview of :%s/replace
-
 vim.o.showmatch = true         -- jump to matching paren/brace
+vim.opt.ignorecase = true 
 
 -- ==============================
 -- COLOURS AND UI
 -- ==============================
 vim.o.termguicolors = true
---vim.o.signcolumn = "yes"
-
+vim.opt.title = true
+vim.opt.showcmd = true
+vim.opt.cmdheight = 1           -- Only set if not using 0.8+ behavior
+vim.opt.laststatus = 3
 -- ==============================
 -- FILE HANDLING
 -- ==============================
 vim.o.swapfile = false
 vim.o.backup = false
+vim.filetype.add({
+  extension = {
+    mdx = "mdx",
+  },
+})
 
 -- ==============================
 -- UNDOTREE / UNDO HISTORY
 -- ==============================
-local undodir = os.getenv("HOME") .. "/vim/undodir"
+local undodir = os.getenv("HOME") .. "/.vim/undodir"
 if vim.fn.isdirectory(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
@@ -78,12 +84,14 @@ vim.o.undofile = true
 -- OTHER
 -- ==============================
 vim.opt.isfname:append("@-@")  -- allow '@-@' in filenames
+vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
+vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
 -- ==============================
 -- KEYMAPS
 -- ==============================
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+--vim.g.mapleader = ' '
+--vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')  -- clear search highlight
 
 -- Undotree toggle keybind
@@ -99,12 +107,10 @@ vim.keymap.set("i", "[", "[]<Left>")
 vim.keymap.set("i", "{", "{}<Left>")
 vim.keymap.set("i", "<", "<><Left>")
 
-vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O", { noremap = true, silent = true })
-vim.keymap.set("i", "{;<CR>", "{<CR>};<ESC>O", { noremap = true, silent = true })
-
 -- ==============================
--- PLUGINS
+-- TERMINAL
 -- ==============================
-require("bram.remap")
-require("bram.colors")()
+vim.opt.shell = "bash"
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
 

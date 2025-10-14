@@ -1,72 +1,81 @@
--- lua/plugins/treesitter.lua
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "windwp/nvim-ts-autotag",
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        "nvim-treesitter/playground",
+  -- nvim-treesitter
+{
+  "nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  version = false,
+  build = ":TSUpdate",
+  lazy = vim.fn.argc(-1) == 0,
+  event = { "BufReadPost", "BufNewFile" },
+  opts = {
+    indent = { enable = true },
+    highlight = { enable = true },
+    fold = { enable = true },
+    ensure_installed = {
+      "bash","c","diff","html","javascript","jsdoc","json","jsonc",
+      "lua","luadoc","luap","markdown","markdown_inline","printf",
+      "python","query","regex","toml","tsx","typescript","vim",
+      "vimdoc","xml","yaml",
     },
-    config = function()
-        -- Skip deprecated module integration
-        vim.g.skip_ts_context_commentstring_module = true
-
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-                "lua", "vim", "bash", "python", "javascript",
-                "typescript", "html", "css", "json", "markdown",
-                "todotxt"  -- added here
-            },
-            sync_install = false,
-            auto_install = true,
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
-                },
-            },
-
-            indent = {
-                enable = true,
-                disable = { "python" },
-            },
-
-            autotag = { enable = true },
-
-            playground = {
-                enable = true,
-                disable = {},
-                updatetime = 25,
-                persist_queries = false,
-                keybindings = {
-                    toggle_query_editor = "o",
-                    toggle_hl_groups = "i",
-                    toggle_injected_languages = "t",
-                    toggle_anonymous_nodes = "a",
-                    toggle_language_display = "I",
-                    focus_language = "f",
-                    unfocus_language = "F",
-                    update = "R",
-                    goto_node = "<cr>",
-                    show_help = "?",
-                },
-            },
-        })
-
-        -- Setup ts_context_commentstring separately
-        require("ts_context_commentstring").setup({})
-
-        -- Keymap to toggle Treesitter Playground
-        vim.keymap.set("n", "<leader>tp", ":TSPlaygroundToggle<CR>", { desc = "Toggle Treesitter Playground" })
+  },
+  config = function(_, opts)
+    local ok, configs = pcall(require, "nvim-treesitter.configs")
+    if not ok then
+      vim.notify("nvim-treesitter not loaded", vim.log.levels.WARN)
+      return
     end
+    configs.setup(opts)
+  end,
+},
+  -- textobjects
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "BufReadPost",
+    opts = {
+      move = {
+        enable = true,
+        set_jumps = true,
+        keys = {
+          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+          goto_next_end   = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+          goto_previous_end   = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+        },
+      },
+    },
+    config = function(_, opts)
+      local TSObj = require("nvim-treesitter-textobjects")
+      TSObj.setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter_textobjects_filetype", { clear = true }),
+        callback = function(ev)
+          if not (opts.move.enable) then return end
+          local moves = opts.move.keys or {}
+          for method, keymaps in pairs(moves) do
+            for key, query in pairs(keymaps) do
+              local desc = query:gsub("@", ""):gsub("%..*", "")
+              desc = desc:sub(1,1):upper() .. desc:sub(2)
+              desc = (key:sub(1,1) == "[" and "Prev " or "Next ") .. desc
+              desc = desc .. (key:sub(2,2) == key:sub(2,2):upper() and " End" or " Start")
+              if not (vim.wo.diff and key:find("[cC]")) then
+                vim.keymap.set({ "n","x","o" }, key, function()
+                  require("nvim-treesitter-textobjects.move")[method](query, "textobjects")
+                end, { buffer = ev.buf, desc = desc, silent = true })
+              end
+            end
+          end
+        end,
+      })
+    end,
+  },
+
+  -- autotag
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufReadPost",
+    opts = {},
+  },
 }
+

@@ -1,58 +1,129 @@
--- lua/plugins/lualine.lua
-return function()
-  require('lualine').setup {
-    options = {
-      icons_enabled = true,
-      theme = 'auto',
-      component_separators = { left = '', right = '' },
-      section_separators = { left = '', right = '' },
-      disabled_filetypes = {
-        statusline = {},
-        winbar = {},
-      },
-      ignore_focus = {},
-      always_divide_middle = true,
-      always_show_tabline = true,
-      globalstatus = false,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-        refresh_time = 16, -- ~60fps
-        events = {
-          'WinEnter',
-          'BufEnter',
-          'BufWritePost',
-          'SessionLoadPost',
-          'FileChangedShellPost',
-          'VimResized',
-          'Filetype',
-          'CursorMoved',
-          'CursorMovedI',
-          'ModeChanged',
-        },
-      },
+return {
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.g.lualine_laststatus = vim.o.laststatus
+            if vim.fn.argc(-1) > 0 then
+                vim.o.statusline = " "
+            else
+                vim.o.laststatus = 0
+            end
+        end,
+        opts = function()
+            -- Icons
+            local icons = {
+                diagnostics = { Error = "", Warn = "", Info = "", Hint = "" },
+                git = { added = "+", modified = "~", removed = "-" },
+            }
+
+            -- Root directory display
+            local root_dir = function()
+                return vim.fn.getcwd()
+            end
+
+            -- Pretty path
+            local pretty_path = function()
+                return vim.fn.expand("%:~:.")
+            end
+
+            vim.o.laststatus = vim.g.lualine_laststatus
+
+            local opts = {
+                options = {
+                    theme = "auto",
+                    globalstatus = vim.o.laststatus == 3,
+                    disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch" },
+                    lualine_c = {
+                        root_dir,
+                        {
+                            "diagnostics",
+                            symbols = icons.diagnostics,
+                        },
+                        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                        pretty_path,
+                    },
+                    lualine_x = {
+                        function()
+                            return Snacks and Snacks.profiler and Snacks.profiler.status() or ""
+                        end,
+                        {
+                            function()
+                                return package.loaded["noice"] and require("noice").api.status.command.get() or ""
+                            end,
+                            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                            color = function() return { fg = Snacks.util.color("Statement") } end,
+                        },
+                        {
+                            function()
+                                return package.loaded["noice"] and require("noice").api.status.mode.get() or ""
+                            end,
+                            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                            color = function() return { fg = Snacks.util.color("Constant") } end,
+                        },
+                        {
+                            function() return package.loaded["dap"] and " " .. require("dap").status() or "" end,
+                            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+                            color = function() return { fg = Snacks.util.color("Debug") } end,
+                        },
+                        {
+                            require("lazy.status").updates,
+                            cond = require("lazy.status").has_updates,
+                            color = function() return { fg = Snacks.util.color("Special") } end,
+                        },
+                        {
+                            "diff",
+                            symbols = icons.git,
+                            source = function()
+                                local gitsigns = vim.b.gitsigns_status_dict
+                                if gitsigns then
+                                    return {
+                                        added = gitsigns.added,
+                                        modified = gitsigns.changed,
+                                        removed = gitsigns.removed,
+                                    }
+                                end
+                            end,
+                        },
+                    },
+                    lualine_y = {
+                        { "progress", separator = " ", padding = { left = 1, right = 0 } },
+                        { "location", padding = { left = 0, right = 1 } },
+                    },
+                    lualine_z = {
+                        function()
+                            return " " .. os.date("%R")
+                        end,
+                    },
+                },
+                extensions = { "neo-tree", "lazy", "fzf" },
+            }
+
+            -- Optional: Trouble integration
+            if vim.g.trouble_lualine then
+                local ok, trouble = pcall(require, "trouble")
+                if ok then
+                    local symbols = trouble.statusline({
+                        mode = "symbols",
+                        groups = {},
+                        title = false,
+                        filter = { range = true },
+                        format = "{kind_icon}{symbol.name:Normal}",
+                        hl_group = "lualine_c_normal",
+                    })
+                    table.insert(opts.sections.lualine_c, {
+                        symbols and symbols.get,
+                        cond = function() return vim.b.trouble_lualine ~= false and symbols.has() end,
+                    })
+                end
+            end
+
+            return opts
+        end,
     },
-    sections = {
-      lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
-      lualine_x = {'encoding', 'fileformat', 'filetype'},
-      lualine_y = {'progress'},
-      lualine_z = {'location'},
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {'filename'},
-      lualine_x = {'location'},
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {},
-  }
-end
+}
 

@@ -15,21 +15,7 @@ return {
       { "<leader>h2", function() harpoon:list():select(2) end, desc = "Go to file 2" },
       { "<leader>h3", function() harpoon:list():select(3) end, desc = "Go to file 3" },
       { "<leader>h4", function() harpoon:list():select(4) end, desc = "Go to file 4" },
-      {
-        "<leader>hr",
-        function()
-          local idx = vim.fn.input("Remove which slot? ")
-          idx = tonumber(idx)
-          if idx then
-            harpoon:list():remove(idx)
-            print("Removed Harpoon slot " .. idx)
-          else
-            print("Invalid slot number")
-          end
-        end,
-        desc = "Remove Harpoon item",
-      },
-    }
+    } 
 
     for _, key in ipairs(keys) do
       vim.keymap.set("n", key[1], key[2], { desc = key.desc })
