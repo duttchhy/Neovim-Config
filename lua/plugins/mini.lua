@@ -2,6 +2,7 @@ return {
   {
     "nvim-mini/mini.ai",
     -- load immediately or use BufReadPost if lazy-loading
+    events = "VeryLazy",
     opts = function()
       local ai = require("mini.ai")
       return {
@@ -57,29 +58,11 @@ return {
     end,
   },
   {
-    "nvim-mini/mini.animate",
-    opts = function()
-      if vim.g.neovide then return {} end
-      local animate = require("mini.animate")
-      return {
-        resize = { timing = animate.gen_timing.linear({ duration = 50, unit = "total" }) },
-        scroll = {
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-          subscroll = animate.gen_subscroll.equal({ predicate = function() return true end }),
-        },
-      }
-    end,
-    config = function(_, opts)
-      if vim.g.neovide then return end
-      require("mini.animate").setup(type(opts) == "function" and opts() or opts)
-    end,
-  },
-  {
     "nvim-mini/mini.indentscope",
+    events = "VeryLazy",
     opts = { symbol = "│", options = { try_as_border = true } },
     config = function(_, opts)
       require("mini.indentscope").setup(opts)
     end,
   },
 }
-

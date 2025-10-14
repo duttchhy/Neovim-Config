@@ -2,9 +2,10 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    version = false,
+    tag = '0.1.8',
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-lua/plenary.nvim"},
     },
     keys = {
       { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Switch Buffer" },
@@ -25,4 +26,5 @@ return {
     end,
   },
 }
+
 

@@ -1,11 +1,10 @@
 return {
-    -- nvim-treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
         version = false,
         lazy = false,
-        build = "TSUpdate",
+        build = ":TSUpdate",
         opts = {
             indent = { enable = true },
             sync_install = false,
@@ -20,55 +19,23 @@ return {
             },
         },
     },
-    -- textobjects
     {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = "main",
-        event = "BufReadPost",
-        opts = {
-            move = {
-                enable = true,
-                set_jumps = true,
-                keys = {
-                    goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-                    goto_next_end   = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-                    goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-                    goto_previous_end   = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-                },
-            },
-        },
-        config = function(_, opts)
-            local TSObj = require("nvim-treesitter-textobjects")
-            TSObj.setup(opts)
-
-            vim.api.nvim_create_autocmd("FileType", {
-                group = vim.api.nvim_create_augroup("treesitter_textobjects_filetype", { clear = true }),
-                callback = function(ev)
-                    if not (opts.move.enable) then return end
-                    local moves = opts.move.keys or {}
-                    for method, keymaps in pairs(moves) do
-                        for key, query in pairs(keymaps) do
-                            local desc = query:gsub("@", ""):gsub("%..*", "")
-                            desc = desc:sub(1,1):upper() .. desc:sub(2)
-                            desc = (key:sub(1,1) == "[" and "Prev " or "Next ") .. desc
-                            desc = desc .. (key:sub(2,2) == key:sub(2,2):upper() and " End" or " Start")
-                            if not (vim.wo.diff and key:find("[cC]")) then
-                                vim.keymap.set({ "n","x","o" }, key, function()
-                                    require("nvim-treesitter-textobjects.move")[method](query, "textobjects")
-                                end, { buffer = ev.buf, desc = desc, silent = true })
-                            end
-                        end
-                    end
-                end,
-            })
-        end,
-    },
-
-    -- autotag
-    {
-        "windwp/nvim-ts-autotag",
-        event = "BufReadPost",
-        opts = {},
-    },
+        "nvim-treesitter/nvim-treesitter-context",
+        after = "nvim-treesitter",
+        config = function()
+            require'treesitter-context'.setup{
+                enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+                multiwindow = false, -- Enable multiwindow support.
+                max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+                min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+                line_numbers = true,
+                multiline_threshold = 20, -- Maximum number of lines to show for a single context
+                trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+                mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+                separator = nil,
+                zindex = 20, -- The Z-index of the context window
+                on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+            }
+        end
+    }
 }
-
