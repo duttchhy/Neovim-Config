@@ -30,6 +30,7 @@ vim.o.smartindent = true       -- better than just `autoindent`
 vim.opt.autoindent = true
 vim.opt.smarttab = true
 vim.opt.backspace = { "start", "eol", "indent" }
+
 -- ==============================
 -- TEXT / FORMATTING
 -- ==============================
@@ -62,6 +63,8 @@ vim.opt.laststatus = 3
 -- ==============================
 -- FILE HANDLING
 -- ==============================
+vim.o.wildmenu = true
+vim.o.wildmode = "longest:full,full"
 vim.o.swapfile = false
 vim.o.backup = false
 vim.filetype.add({
@@ -110,7 +113,6 @@ vim.keymap.set("i", "<", "<><Left>")
 -- ==============================
 -- TERMINAL
 -- ==============================
-vim.opt.shell = "bash"
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 

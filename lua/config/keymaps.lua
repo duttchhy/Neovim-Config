@@ -15,6 +15,8 @@ local opts = { noremap = true, silent = true }
 keymap("n", "<leader>q", ":confirm q<CR>", vim.tbl_extend("force", opts, { desc = "Quit current buffer (confirm)" }))
 keymap("n", "<leader>Q", ":confirm qa<CR>", vim.tbl_extend("force", opts, { desc = "Quit all buffers (confirm)" }))
 keymap("n", "<leader>e", ":Ex<CR>", vim.tbl_extend("force", opts, { desc = "Open file explorer" }))
+keymap('n', 'q', '<Nop>', { desc = "Disable default 'q' macro recording" })
+keymap('n', '<leader>W', 'q', { desc = "Record macro (moved from q to <leader>w)" })
 
 --===============
 --   Visual Mode
@@ -68,8 +70,10 @@ keymap("n", "<C-m>", "<C-i>", vim.tbl_extend("force", opts, { desc = "Fix jumpli
 --   Registers / Clipboard
 --===============
 keymap("x", "<leader>p", [["_dP]], vim.tbl_extend("force", opts, { desc = "Paste over selection without yanking" }))
+keymap({ "n", "v" }, "<C-c>", [["+y]], vim.tbl_extend("force", opts, { desc = "Yank to system clipboard" }))
 keymap({ "n", "v" }, "<leader>y", [["+y]], vim.tbl_extend("force", opts, { desc = "Yank to system clipboard" }))
 keymap("n", "<leader>Y", [["+Y]], vim.tbl_extend("force", opts, { desc = "Yank full line to system clipboard" }))
+keymap({ "n", "v" }, "<C-x>", [["+d]], vim.tbl_extend("force", opts, { desc = "Cut to system clipboard" }))
 keymap({ "n", "v" }, "<leader>d", '"_d', vim.tbl_extend("force", opts, { desc = "Delete without affecting clipboard" }))
 
 keymap("n", "x", '"_x', { desc = "Delete single char silently" })

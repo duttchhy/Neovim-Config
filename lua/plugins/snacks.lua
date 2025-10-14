@@ -11,10 +11,10 @@ return {
 			indent = { enabled = true },
 			input = { enabled = true },
 			picker = { enabled = true },
---			notifier = {
---				enabled = true,
---				timeout = 3000,
---			},
+			notifier = {
+				enabled = true,
+				timeout = 3000,
+			},
 			quickfile = { enabled = true },
 			scope = { enabled = true },
 			scroll = { enabled = true },
