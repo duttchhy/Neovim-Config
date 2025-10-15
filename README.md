@@ -15,7 +15,7 @@
 ```
 ---
 > No, I will not explain myself
-
+[Gitea](https://git.duttchhy.com)
 ## Dashboard & Aesthetic
 - **[alpha-nvim](https://github.com/goolord/alpha-nvim)** – Fast, customizable start screen/dashboard.  
 - **[catppuccin](https://github.com/catppuccin/nvim)** – Beautiful pastel theme with multiple flavors.  

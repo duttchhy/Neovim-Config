@@ -13,4 +13,5 @@
 require("config.lazy")
 require("config.colors")()
 require("config.keymaps")
+require("config.autocmds")
 require("config.options")
