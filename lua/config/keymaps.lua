@@ -38,8 +38,8 @@ keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", vim.tbl_extend("force", opts, { desc =
 --   Normal Mode
 --===============
 keymap("n", "J", "mzJ`z", vim.tbl_extend("force", opts, { desc = "Join lines (keep cursor position)" }))
-keymap("n", "<C-d>", "<C-d>zz", vim.tbl_extend("force", opts, { desc = "Scroll half-page down (centered)" }))
-keymap("n", "<C-u>", "<C-u>zz", vim.tbl_extend("force", opts, { desc = "Scroll half-page up (centered)" }))
+keymap("n", "<C-j>", "<C-d>zz", vim.tbl_extend("force", opts, { desc = "Scroll half-page down (centered)" }))
+keymap("n", "<C-k>", "<C-u>zz", vim.tbl_extend("force", opts, { desc = "Scroll half-page up (centered)" }))
 keymap("n", "n", "nzzzv", vim.tbl_extend("force", opts, { desc = "Next search result (centered)" }))
 keymap("n", "N", "Nzzzv", vim.tbl_extend("force", opts, { desc = "Previous search result (centered)" }))
 keymap("n", "<S-Down>", "nzzzv", vim.tbl_extend("force", opts, { desc = "Next search result (Shift+Down)" }))
@@ -68,6 +68,7 @@ keymap("n", "<leader><Up>", "<cmd>lprev<CR>zz", vim.tbl_extend("force", opts, { 
 keymap("n", "=ap", "ma=ap`a", vim.tbl_extend("force", opts, { desc = "Re-indent paragraph" }))
 keymap("i", "<C-c>", "<Esc>", vim.tbl_extend("force", opts, { desc = "Escape insert mode (Ctrl+C)" }))
 keymap("n", "<C-a>", "gg<S-v>G", vim.tbl_extend("force", opts, { desc = "Select all text" }))
+keymap("n", "<C-l>", "0<S-v>$", vim.tbl_extend("force", opts, { desc = "Select Line" }))
 keymap("n", "<Leader>o", "o<Esc>^Da", vim.tbl_extend("force", opts, { desc = "Insert new line below (no comment continuation)" }))
 keymap("n", "<Leader>O", "O<Esc>^Da", vim.tbl_extend("force", opts, { desc = "Insert new line above (no comment continuation)" }))
 keymap("n", "<C-m>", "<C-i>", vim.tbl_extend("force", opts, { desc = "Fix jumplist (Ctrl+m behaves like Ctrl+i)" }))
@@ -110,8 +111,4 @@ keymap("n", "sh", "<C-w>h", { desc = "Move to left window" })
 keymap("n", "sk", "<C-w>k", { desc = "Move to upper window" })
 keymap("n", "sj", "<C-w>j", { desc = "Move to lower window" })
 keymap("n", "sl", "<C-w>l", { desc = "Move to right window" })
-keymap("n", "<C-w><left>", "<C-w><", { desc = "Shrink window horizontally" })
-keymap("n", "<C-w><right>", "<C-w>>", { desc = "Expand window horizontally" })
-keymap("n", "<C-w><up>", "<C-w>+", { desc = "Increase window height" })
-keymap("n", "<C-w><down>", "<C-w>-", { desc = "Decrease window height" })
 

@@ -31,6 +31,7 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
+                    "pylsp",
                     "stylua",
                     "gh_actions_ls",
                     "bashls",

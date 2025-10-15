@@ -5,7 +5,7 @@ return {
         lazy = false,
         ---@type snacks.Config
         opts = {
-            bigfile = { enabled = false},
+            bigfile = { enabled = true },
             dashboard = { enabled = false },
             explorer = { enabled = false },
             image = { enabled = true },
@@ -14,7 +14,7 @@ return {
             picker = { enabled = true },
             notifier = {
                 enabled = true,
-                timeout = 30000,
+                timeout = 3000,
             },
             quickfile = { enabled = true },
             scope = { enabled = true },
