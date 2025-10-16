@@ -18,7 +18,7 @@ local opts = { noremap = true, silent = true }
 --===============
 --  Personal Remaps
 --===============
-keymap("n", "<leader>q", ":confirm q<CR>", vim.tbl_extend("force", opts, { desc = "Quit current buffer (confirm)" }))
+keymap("n", "<leader>qq", ":confirm q<CR>", vim.tbl_extend("force", opts, { desc = "Quit current buffer (confirm)" }))
 keymap("n", "<leader>Q", ":confirm qa<CR>", vim.tbl_extend("force", opts, { desc = "Quit all buffers (confirm)" }))
 keymap("n", "<leader>e", ":Ex<CR>", vim.tbl_extend("force", opts, { desc = "Open file explorer" }))
 keymap('n', 'q', '<Nop>', { desc = "Disable default 'q' macro recording" })

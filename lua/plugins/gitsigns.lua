@@ -24,8 +24,6 @@ return {
                 local function map(mode, lhs, rhs, desc)
                     vim.keymap.set(mode, lhs, rhs, { buffer = buffer, desc = desc, silent = true })
                 end
-
-                -- Navigation
                 map("n", "]h", function()
                     if vim.wo.diff then
                         vim.cmd.normal({ "]c", bang = true })
@@ -33,7 +31,6 @@ return {
                         gs.nav_hunk("next")
                     end
                 end, "Next Hunk")
-
                 map("n", "[h", function()
                     if vim.wo.diff then
                         vim.cmd.normal({ "[c", bang = true })
@@ -41,11 +38,8 @@ return {
                         gs.nav_hunk("prev")
                     end
                 end, "Prev Hunk")
-
                 map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
                 map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-
-                -- Actions
                 map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
                 map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
                 map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
