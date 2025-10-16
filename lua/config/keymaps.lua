@@ -69,8 +69,6 @@ keymap("n", "=ap", "ma=ap`a", vim.tbl_extend("force", opts, { desc = "Re-indent 
 keymap("i", "<C-c>", "<Esc>", vim.tbl_extend("force", opts, { desc = "Escape insert mode (Ctrl+C)" }))
 keymap("n", "<C-a>", "gg<S-v>G", vim.tbl_extend("force", opts, { desc = "Select all text" }))
 keymap("n", "<C-l>", "0<S-v>$", vim.tbl_extend("force", opts, { desc = "Select Line" }))
-keymap("n", "<Leader>o", "o<Esc>^Da", vim.tbl_extend("force", opts, { desc = "Insert new line below (no comment continuation)" }))
-keymap("n", "<Leader>O", "O<Esc>^Da", vim.tbl_extend("force", opts, { desc = "Insert new line above (no comment continuation)" }))
 keymap("n", "<C-m>", "<C-i>", vim.tbl_extend("force", opts, { desc = "Fix jumplist (Ctrl+m behaves like Ctrl+i)" }))
 
 --===============

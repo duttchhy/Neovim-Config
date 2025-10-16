@@ -12,6 +12,8 @@ return {
             indent = { enabled = true },
             input = { enabled = true },
             picker = { enabled = true },
+            lazygit = { enabled = true },
+            win = { enabled = true },
             notifier = {
                 enabled = true,
                 timeout = 30000,
