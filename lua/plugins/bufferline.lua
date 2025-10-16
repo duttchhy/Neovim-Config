@@ -95,8 +95,8 @@ return {
                     {
                         filetype = "NvimTree",
                         text = "File Explorer",
-                        highlight = "Directory",
-                        separator = false
+                        separator = true,
+                        text_align = "center",
 
                     },
                 },
