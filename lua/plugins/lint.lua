@@ -2,7 +2,6 @@ return {
   "mfussenegger/nvim-lint",
   event = "BufReadPost", -- replaced LazyFile with standard Neovim event
   opts = {
-    -- Events to trigger linters
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       fish = { "fish" },

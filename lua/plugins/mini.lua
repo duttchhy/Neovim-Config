@@ -2,7 +2,7 @@ return {
     {
         "nvim-mini/mini.ai",
         -- load immediately or use BufReadPost if lazy-loading
-        events = "VeryLazy",
+        event = "VeryLazy",
         opts = function()
             local ai = require("mini.ai")
             return {
@@ -59,7 +59,7 @@ return {
     },
     {
         "nvim-mini/mini.indentscope",
-        events = "VeryLazy",
+        event = "VeryLazy",
         opts = { symbol = "│", options = { try_as_border = true } },
         config = function(_, opts)
             require("mini.indentscope").setup(opts)
