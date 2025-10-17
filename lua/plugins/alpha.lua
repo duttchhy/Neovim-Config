@@ -5,8 +5,6 @@ return {
     config = function()
         local alpha = require("alpha")
         local dashboard = require("alpha.themes.dashboard")
-
-        -- Header
         dashboard.section.header.val = {
             "                                            NeoVim, But I am a rice farmer!",
             "      _____    ____   ____  _________________  _________________      _____    ____   ____  ____   ____  _____      _____ ",
@@ -34,6 +32,15 @@ return {
         }
         dashboard.section.footer.val = { "⏳ Loading plugins..." }
         alpha.setup(dashboard.config)
+        -- Suppress empty buffer ERR
+        vim.api.nvim_create_autocmd("WinResized", {
+            callback = function()
+                pcall(function()
+                    require("alpha").redraw()
+                end)
+            end,
+        })
+
         vim.cmd([[
         autocmd FileType alpha setlocal nofoldenable
         ]])
