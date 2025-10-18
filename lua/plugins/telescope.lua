@@ -10,6 +10,7 @@ return {
       -- fzf-native for fast sorting
       {
         "nvim-telescope/telescope-fzf-native.nvim",
+        after = "telescope.nvim",
         build = "make",
         config = function()
           local ok, _ = pcall(require("telescope").load_extension, "fzf")
