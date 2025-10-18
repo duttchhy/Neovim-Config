@@ -40,7 +40,11 @@ return {
       { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
-      { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=true<cr>", desc = "Buffers" },
+      {
+        "<leader>fb",
+        "<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=true<cr>",
+        desc = "Buffers",
+      },
       { "<leader>fc", "<cmd>Telescope find_files cwd=~/.config/nvim<cr>", desc = "Find Config File" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
       { "<leader>fF", "<cmd>Telescope find_files cwd_only=true<cr>", desc = "Find Files (cwd)" },
@@ -141,9 +145,12 @@ return {
           require("flash").jump({
             pattern = "^",
             label = { after = { 0, 0 } },
-            search = { mode = "search", exclude = function(win)
-              return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
-            end },
+            search = {
+              mode = "search",
+              exclude = function(win)
+                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
+              end,
+            },
             action = function(match)
               local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
               picker:set_selection(match.pos[1] - 1)
@@ -158,21 +165,4 @@ return {
       end
     end,
   },
-
-  -- LSP Telescope keymaps
-  {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = {
-        { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition" },
-        { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-        { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
-        { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto Type Definition" },
-      }
-      for _, key in ipairs(keys) do
-        vim.keymap.set("n", key[1], key[2], { desc = key.desc, silent = true })
-      end
-    end,
-  },
 }
-
