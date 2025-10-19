@@ -64,11 +64,26 @@ return {
     end,
   },
   {
-    "nvim-mini/mini.indentscope",
+    "echasnovski/mini.indentscope",
     event = "VeryLazy",
-    opts = { symbol = "│", options = { try_as_border = true } },
+    opts = {
+      symbol = "│",
+      options = { try_as_border = true },
+    },
     config = function(_, opts)
-      require("mini.indentscope").setup(opts)
+      local indentscope = require("mini.indentscope")
+
+      indentscope.setup(opts)
+
+      -- Disable for specific filetypes like alpha, dashboard, etc.
+      local disable_ft = { "alpha", "dashboard", "snacks_dashboard", "neo-tree" }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = disable_ft,
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
     end,
   },
   {

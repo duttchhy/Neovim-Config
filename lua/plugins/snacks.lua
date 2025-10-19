@@ -9,7 +9,10 @@ return {
       dashboard = { enabled = false },
       explorer = { enabled = false },
       image = { enabled = true },
-      indent = { enabled = true },
+      indent = {
+        enabled = true,
+        exclude = { "alpha" },
+      },
       input = { enabled = true },
       picker = { enabled = true },
       lazygit = { enabled = true },
