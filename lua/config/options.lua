@@ -101,8 +101,6 @@ vim.o.undofile = true
 -- OTHER
 -- ==============================
 vim.opt.isfname:append("@-@")
-vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
-vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
 -- ==============================
 -- KEYMAPS
