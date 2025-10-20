@@ -19,7 +19,7 @@ return {
       win = { enabled = true },
       notifier = {
         enabled = true,
-        timeout = 30000,
+        timeout = 3000,
       },
       quickfile = { enabled = true },
       scope = { enabled = true },

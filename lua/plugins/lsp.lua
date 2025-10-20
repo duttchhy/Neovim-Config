@@ -62,6 +62,13 @@ return {
             },
           },
         },
+        r_language_server = { -- R LSP
+          cmd = { "R", "--slave", "-e", "languageserver::run()" },
+          filetypes = { "r", "rmd" }, -- R and R Markdown files
+          root_dir = function(fname)
+            return vim.fn.getcwd() -- or use a more complex project root detection if desired
+          end,
+        },
       }
 
       local ensure_installed = vim.tbl_keys(servers)
@@ -108,12 +115,12 @@ return {
           vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
         end
       end
-      -- Show diagnostics in a floating window on hover
-      vim.api.nvim_create_autocmd("CursorHold", {
-        callback = function()
-          vim.diagnostic.open_float(nil, { focus = false })
-        end,
-      })
+      --      -- Show diagnostics in a floating window on hover
+      --      vim.api.nvim_create_autocmd("CursorHold", {
+      --        callback = function()
+      --          vim.diagnostic.open_float(nil, { focus = false })
+      --        end,
+      --      })
     end,
   },
 }
