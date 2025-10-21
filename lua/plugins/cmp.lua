@@ -40,6 +40,7 @@ return {
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
+              -- Always fallback to default <Tab> (indentation, etc.)
               fallback()
             end
           end, { "i", "s" }),
@@ -50,6 +51,7 @@ return {
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
+              -- Always fallback to default <S-Tab> (outdent)
               fallback()
             end
           end, { "i", "s" }),
@@ -68,12 +70,13 @@ return {
         },
       })
 
-      -- Cmdline completion
+      -- Cmdline completion (search)
       cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = { { name = "buffer" } },
       })
 
+      -- Cmdline completion (commands)
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
@@ -96,7 +99,7 @@ return {
         },
         signature = { enabled = true },
         sources = {
-          default = { "lazydev", "lsp", "path", "snippets", "buffer", "cmdline" }, -- added cmdline
+          default = { "lazydev", "lsp", "path", "snippets", "buffer", "cmdline" },
           providers = {
             lazydev = {
               name = "LazyDev",

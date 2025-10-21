@@ -12,22 +12,20 @@ return {
         { "<leader>bc", "<Cmd>BufferLinePickClose<CR>", desc = "Pick Bufferline to close" },
         { "<leader>bh", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
         { "<leader>bl", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-        { "b[", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-        { "b]", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-        { "B[", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-        { "B]", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+        { "<leader>bH", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+        { "<leader>bL", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
       }
 
-      -- Dynamically add b1..b9 and b0 mappings
+      -- Add leader+b1..b9 and b0 mappings
       for i = 1, 9 do
         table.insert(keys, {
-          "b" .. i,
+          "<leader>b" .. i,
           "<Cmd>BufferLineGoToBuffer " .. i .. "<CR>",
           desc = "Go to buffer " .. i,
         })
       end
       table.insert(keys, {
-        "b0",
+        "<leader>b0",
         "<Cmd>BufferLineGoToBuffer 0<CR>",
         desc = "Go to last buffer",
       })
@@ -99,10 +97,7 @@ return {
           local icon, _ = require("nvim-web-devicons").get_icon(opts.name, opts.extension)
           return icon or ""
         end,
-        hover = {
-          enabled = false,
-        },
-        -- Styling Options
+        hover = { enabled = false },
         separator_style = "thin",
         show_buffer_close_icons = false,
         always_show_bufferline = true,
