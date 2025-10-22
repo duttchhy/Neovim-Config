@@ -36,8 +36,6 @@ keymap(
   vim.tbl_extend("force", opts, { desc = "Move selection down (Shift+Down)" })
 )
 keymap("v", "<S-Up>", ":m '<-2<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection up (Shift+Up)" }))
-keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection down (Alt+Down)" }))
-keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection up (Alt+Up)" }))
 
 --===============
 --   Normal Mode
@@ -47,8 +45,6 @@ keymap("n", "<C-j>", "<C-d>zz", vim.tbl_extend("force", opts, { desc = "Scroll h
 keymap("n", "<C-k>", "<C-u>zz", vim.tbl_extend("force", opts, { desc = "Scroll half-page up (centered)" }))
 keymap("n", "n", "nzzzv", vim.tbl_extend("force", opts, { desc = "Next search result (centered)" }))
 keymap("n", "N", "Nzzzv", vim.tbl_extend("force", opts, { desc = "Previous search result (centered)" }))
-keymap("n", "<S-Down>", "nzzzv", vim.tbl_extend("force", opts, { desc = "Next search result (Shift+Down)" }))
-keymap("n", "<S-Up>", "Nzzzv", vim.tbl_extend("force", opts, { desc = "Previous search result (Shift+Up)" }))
 keymap("n", "<A-Down>", "nzzzv", vim.tbl_extend("force", opts, { desc = "Next search result (Alt+Down)" }))
 keymap("n", "<A-Up>", "Nzzzv", vim.tbl_extend("force", opts, { desc = "Previous search result (Alt+Up)" }))
 
@@ -57,23 +53,17 @@ keymap("n", "<A-Up>", "Nzzzv", vim.tbl_extend("force", opts, { desc = "Previous 
 --===============
 keymap("n", "=ap", "ma=ap`a", vim.tbl_extend("force", opts, { desc = "Re-indent paragraph" }))
 keymap("n", "<C-a>", "gg<S-v>G", vim.tbl_extend("force", opts, { desc = "Select all text" }))
-keymap("n", "<C-s>", "0<S-v>$", vim.tbl_extend("force", opts, { desc = "Select Line" }))
-keymap("n", "<C-l>", "0<S-v>$", vim.tbl_extend("force", opts, { desc = "Select Line" }))
 keymap("n", "<C-m>", "<C-i>", vim.tbl_extend("force", opts, { desc = "Fix jumplist (Ctrl+m behaves like Ctrl+i)" }))
 
 --===============
 --   Registers / Clipboard
 --===============
-keymap("x", "<leader>p", [["_dP]], vim.tbl_extend("force", opts, { desc = "Paste over selection without yanking" }))
 keymap({ "n", "v", "x" }, "<C-c>", [["+y]], vim.tbl_extend("force", opts, { desc = "Yank to system clipboard" }))
 keymap({ "n", "v" }, "<leader>y", [["+y]], vim.tbl_extend("force", opts, { desc = "Yank to system clipboard" }))
-keymap("n", "<leader>Y", [["+Y]], vim.tbl_extend("force", opts, { desc = "Yank full line to system clipboard" }))
 keymap({ "n", "v", "x" }, "<C-x>", [["+d]], vim.tbl_extend("force", opts, { desc = "Cut to system clipboard" }))
 keymap({ "n", "v" }, "<leader>d", '"_d', vim.tbl_extend("force", opts, { desc = "Delete without affecting clipboard" }))
 
 keymap({ "n", "v" }, "x", '"_x', { desc = "Delete single char silently" })
-keymap({ "n", "v" }, "<Leader>p", '"0p', { desc = "Paste last yanked text (not deleted)" })
-keymap({ "n", "v" }, "<Leader>P", '"0P', { desc = "Paste last yanked text before cursor" })
 keymap({ "n", "v" }, "<Leader>c", '"_c', { desc = "Change without yanking" })
 keymap({ "n", "v" }, "<Leader>C", '"_C', { desc = "Change to end without yanking" })
 keymap({ "n", "v" }, "<Leader>D", '"_D', { desc = "Delete to end without yanking" })
