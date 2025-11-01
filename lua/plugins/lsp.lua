@@ -3,10 +3,14 @@ return {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
-            { "williamboman/mason.nvim", opts = {} },
+            {
+                "williamboman/mason.nvim",
+                event = "VeryLazy",
+                opts = {},
+            },
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            { "j-hui/fidget.nvim",       opts = {} },
+            { "j-hui/fidget.nvim", opts = {} },
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
