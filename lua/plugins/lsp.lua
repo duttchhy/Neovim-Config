@@ -73,6 +73,9 @@ return {
             })
 
             -- Diagnostics configuration
+            -- FIX: vim.diagnostic.define_sign does not exist in any Neovim version — that branch
+            -- was always false. Using the modern signs table in vim.diagnostic.config() instead,
+            -- which is the correct approach for Neovim 0.10+.
             vim.diagnostic.config({
                 virtual_text = {
                     prefix = "●",
@@ -82,27 +85,17 @@ return {
                     border = "rounded",
                     source = "always",
                 },
-                signs = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ",
+                        [vim.diagnostic.severity.WARN]  = " ",
+                        [vim.diagnostic.severity.HINT]  = " ",
+                        [vim.diagnostic.severity.INFO]  = " ",
+                    },
+                },
                 severity_sort = true,
                 update_in_insert = false,
             })
-
-            -- Define diagnostic signs (works in Neovim 0.10 and 0.11+)
-            local signs = {
-                { name = "DiagnosticSignError", text = " " },
-                { name = "DiagnosticSignWarn", text = " " },
-                { name = "DiagnosticSignHint", text = " " },
-                { name = "DiagnosticSignInfo", text = " " },
-            }
-
-            for _, sign in ipairs(signs) do
-                -- Use new API if available, otherwise fallback
-                if vim.diagnostic.define_sign then
-                    vim.diagnostic.define_sign(sign.name, { text = sign.text, texthl = sign.name })
-                else
-                    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
-                end
-            end
             --      -- Show diagnostics in a floating window on hover
             --      vim.api.nvim_create_autocmd("CursorHold", {
             --        callback = function()

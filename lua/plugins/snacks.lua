@@ -14,13 +14,14 @@ return {
                 exclude = { "alpha", "dashboard" },
             },
             input = { enabled = true },
-            picker = { enabled = true },
+            -- FIX: picker disabled — conflicts with Telescope (both hook vim.ui.select).
+            -- Keep one fuzzy finder. To use Snacks picker instead, remove Telescope.
+            picker = { enabled = false },
             lazygit = { enabled = true },
             win = { enabled = true },
-            notifier = {
-                enabled = true,
-                timeout = 3000,
-            },
+            -- FIX: notifier disabled — conflicts with Noice (both override vim.notify).
+            -- Noice handles notifications. To use Snacks notifier instead, remove Noice.
+            notifier = { enabled = false },
             quickfile = { enabled = true },
             scope = { enabled = true },
             scroll = { enabled = true },
@@ -30,9 +31,8 @@ return {
         },
         config = function(_, opts)
             require("snacks").setup(opts)
-            -- override vim.ui.input / select so Snacks works properly
+            -- Snacks.input is still active — override vim.ui.input only (not select, which Telescope owns)
             vim.ui.input = require("snacks.input").input
-            vim.ui.select = require("snacks.picker").select
         end,
     },
     {

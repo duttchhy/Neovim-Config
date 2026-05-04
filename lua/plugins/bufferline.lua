@@ -85,9 +85,11 @@ return {
             .. (diag.warning and warn_icon .. diag.warning or "")
           return vim.trim(ret)
         end,
+        -- FIX: was "NvimTree" — the active file explorer is Neo-tree (filetype = "neo-tree").
+        -- The old value never matched, so the bufferline overlapped the sidebar.
         offsets = {
           {
-            filetype = "NvimTree",
+            filetype = "neo-tree",
             text = "File Explorer",
             separator = true,
             text_align = "center",
