@@ -2,13 +2,13 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    keys = {
-      { "<leader>Ut", function() end, desc = "Toggle terminal (bottom)" },
-      { "<leader>Uf", function() end, desc = "Toggle floating terminal" },
-    },
+    -- FIX: removed the `keys` table that mapped <leader>Ut and <leader>Uf to empty no-ops.
+    -- Those stubs fired on keypress and prevented the plugin from ever lazy-loading.
+    -- The real keymaps are registered in the config function below.
+    lazy = true,
     opts = {
       size = 15, -- default terminal height
-      open_mapping = false, -- we’ll handle keymaps manually
+      open_mapping = false, -- we'll handle keymaps manually
       hide_numbers = true,
       shade_terminals = true,
       shading_factor = 2,

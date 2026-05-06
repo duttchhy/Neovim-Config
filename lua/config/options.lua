@@ -108,8 +108,8 @@ vim.opt.isfname:append("@-@")
 -- ==============================
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- clear search highlight
 
--- Undotree toggle keybind
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle UndoTree" })
+-- FIX: moved from <leader>u to <leader>uu to avoid conflicting with which-key's <leader>u "ui" group.
+vim.keymap.set("n", "<leader>uu", "<cmd>UndotreeToggle<CR>", { desc = "Toggle UndoTree" })
 
 -- ==============================
 -- TERMINAL

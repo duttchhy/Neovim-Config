@@ -7,32 +7,11 @@ return {
     version = false, -- use HEAD
     dependencies = {
       "nvim-lua/plenary.nvim",
-      -- fzf-native for fast sorting
+      -- FIX: removed `after` (packer-only key, ignored by lazy.nvim) and the duplicate
+      -- load_extension config block. The outer pcall at the end of opts handles extension loading.
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        after = "telescope.nvim",
         build = "make",
-        config = function()
-          local ok, _ = pcall(require("telescope").load_extension, "fzf")
-          if not ok then
-            print("Failed to load telescope-fzf-native.nvim")
-          end
-        end,
-      },
-      -- dressing.nvim for vim.ui improvement
-      {
-        "stevearc/dressing.nvim",
-        lazy = true,
-        init = function()
-          vim.ui.select = function(...)
-            require("lazy").load({ plugins = { "dressing.nvim" } })
-            return vim.ui.select(...)
-          end
-          vim.ui.input = function(...)
-            require("lazy").load({ plugins = { "dressing.nvim" } })
-            return vim.ui.input(...)
-          end
-        end,
       },
     },
     keys = {

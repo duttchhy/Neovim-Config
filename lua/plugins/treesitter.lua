@@ -45,10 +45,17 @@ return {
                 "svelte",
             },
         },
+        -- FIX: opts are not auto-passed to setup() on the main branch.
+        -- This config function ensures all options (highlight, indent, ensure_installed etc.) are actually applied.
+        config = function(_, opts)
+            require("nvim-treesitter").setup(opts)
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        after = "nvim-treesitter",
+        -- FIX: `after` is a packer.nvim key and is ignored by lazy.nvim.
+        -- Use `dependencies` to guarantee load order.
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
             require("treesitter-context").setup({
                 enable = true,
