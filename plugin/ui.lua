@@ -100,28 +100,6 @@ vim.api.nvim_create_autocmd("WinResized", {
 
 vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
 
--- Update footer with plugin count once everything is loaded
-vim.api.nvim_create_autocmd("User", {
-	pattern = "VeryLazy",
-	once = true,
-	callback = function()
-		local pack_ok, packs = pcall(function()
-			local dir = vim.fn.stdpath("data") .. "/site/pack/core/opt"
-			local count = 0
-			for _ in vim.fs.dir(dir) do
-				count = count + 1
-			end
-			return count
-		end)
-		local count_str = pack_ok and tostring(packs) or "?"
-		dashboard.section.footer.val = {
-			"🚀 Rocket Ship 8=========D 🚀",
-			"🪫 Plugins loaded: " .. count_str .. " 🔋",
-		}
-		pcall(vim.cmd, "AlphaRedraw")
-	end,
-})
-
 -- bufferline
 require("bufferline").setup({
 	options = {
@@ -139,7 +117,6 @@ require("bufferline").setup({
 })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<leader>d", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
 -- trouble
 require("trouble").setup({})
@@ -165,8 +142,8 @@ oil.setup({
 	view_options = { show_hidden = true },
 })
 vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory (oil)" })
-vim.keymap.set("n", "<leader>e", oil.toggle_float, { desc = "Toggle oil float (floating window)" })
--- Note: <leader>e is also bound to oil.open in lua/keymaps.lua
+vim.keymap.set("n", "<leader>e", oil.open, { desc = "Open file explorer (oil)" })
+vim.keymap.set("n", "<leader>o", oil.toggle_float, { desc = "Toggle oil float (floating window)" })
 
 -- toggleterm
 require("toggleterm").setup({

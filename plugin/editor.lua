@@ -1,6 +1,5 @@
 -- Editor utilities: autopairs, indent guides, linting, highlighting, auto-save,
--- guess-indent, todo-comments, img-clip, undotree, wakatime, suda, visual-multi,
--- grammarly LSP.
+-- guess-indent, todo-comments, img-clip, undotree, suda, visual-multi, Comment.
 
 vim.pack.add({
 	-- Autopairs
@@ -25,10 +24,6 @@ vim.pack.add({
 	"https://github.com/lambdalisue/suda.vim",
 	-- Multi-cursor (Ctrl+N)
 	{ src = "https://github.com/mg979/vim-visual-multi", version = "master" },
-	-- Grammarly LSP for prose
-	"https://github.com/emacs-grammarly/lsp-grammarly",
-	-- F# language support
-	"https://github.com/ionide/Ionide-vim",
 	-- Smart comment toggling
 	"https://github.com/numToStr/Comment.nvim",
 })
@@ -70,10 +65,11 @@ require("todo-comments").setup({ signs = false })
 require("Comment").setup()
 
 -- img-clip
+-- NOTE: Update dir_path to your own path before using paste image (<leader>p)
 local year = os.date("%Y")
 require("img-clip").setup({
 	default = {
-		dir_path = "/home/titus/github/website/static/images/" .. year .. "/",
+		dir_path = "/home/bram/images/" .. year .. "/",
 		extension = "webp",
 		process_cmd = "/usr/bin/cwebp -quiet -q 80 -o - -- - 2>/dev/null",
 		template = "![$FILE_NAME_NO_EXT](/images/" .. year .. "/$FILE_NAME)",
