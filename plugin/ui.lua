@@ -74,9 +74,58 @@ statusline.section_location = function()
 end
 
 -- alpha dashboard
-local startify = require("alpha.themes.startify")
-startify.file_icons.provider = "devicons"
-require("alpha").setup(startify.config)
+local alpha = require("alpha")
+local dashboard = require("alpha.themes.dashboard")
+
+dashboard.section.header.val = {
+	"                                            NeoVim, But I am a rice farmer!",
+	"      _____    ____   ____  _________________  _________________      _____    ____   ____  ____   ____  _____      _____ ",
+	" ___|\\    \\  |    | |    |/                 \\/                 \\ ___|\\    \\  |    | |    ||    | |    ||\\    \\    /    /|",
+	"|    |\\    \\ |    | |    |\\______     ______/\\______     ______//    /\\    \\ |    | |    ||    | |    || \\    \\  /    / |",
+	"|    | |    ||    | |    |   \\( /    /  )/      \\( /    /  )/  |    |  |    ||    |_|    ||    |_|    ||  \\____\\/    /  /",
+	"|    | |    ||    | |    |    ' |   |   '        ' |   |   '   |    |  |____||    .-.    ||    .-.    | \\ |    /    /  /",
+	"|    | |    ||    | |    |      |   |              |   |       |    |   ____ |    | |    ||    | |    |  \\|___/    /  /",
+	"|    | |    ||    | |    |     /   //             /   //       |    |  |    ||    | |    ||    | |    |      /    /  /",
+	"|____|/____/||\\___\\_|____|    /___//             /___//        |\\ ___\\/    /||____| |____||____| |____|     /____/  /",
+	"|    /    | || |    |    |   |`   |             |`   |         | |   /____/ ||    | |    ||    | |    |    |`    | /",
+	"|____|____|/  \\|____|____|   |____|             |____|          \\|___|    | /|____| |____||____| |____|    |_____|/",
+	"  \\(    )/       \\(   )/       \\(                 \\(              \\( |____|/   \\(     )/    \\(     )/         )/",
+	"   '    '         '   '         '                  '               '   )/       '     '      '     '          '",
+}
+alpha.setup(dashboard.config)
+
+-- Suppress empty buffer resize errors
+vim.api.nvim_create_autocmd("WinResized", {
+	callback = function()
+		pcall(function()
+			require("alpha").redraw()
+		end)
+	end,
+})
+
+vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
+
+-- Update footer with plugin count once everything is loaded
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	once = true,
+	callback = function()
+		local pack_ok, packs = pcall(function()
+			local dir = vim.fn.stdpath("data") .. "/site/pack/core/opt"
+			local count = 0
+			for _ in vim.fs.dir(dir) do
+				count = count + 1
+			end
+			return count
+		end)
+		local count_str = pack_ok and tostring(packs) or "?"
+		dashboard.section.footer.val = {
+			"🚀 Rocket Ship 8=========D 🚀",
+			"🪫 Plugins loaded: " .. count_str .. " 🔋",
+		}
+		pcall(vim.cmd, "AlphaRedraw")
+	end,
+})
 
 -- bufferline
 require("bufferline").setup({
@@ -121,7 +170,8 @@ oil.setup({
 	view_options = { show_hidden = true },
 })
 vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory (oil)" })
-vim.keymap.set("n", "<leader>o", oil.toggle_float, { desc = "Toggle oil float" })
+vim.keymap.set("n", "<leader>e", oil.toggle_float, { desc = "Toggle oil float (floating window)" })
+-- Note: <leader>e is also bound to oil.open in lua/keymaps.lua
 
 -- toggleterm
 require("toggleterm").setup({

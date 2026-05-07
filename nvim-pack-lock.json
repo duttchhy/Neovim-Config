@@ -4,10 +4,6 @@
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
       "src": "https://github.com/numToStr/Comment.nvim"
     },
-    "CopilotChat.nvim": {
-      "rev": "137d3bc527518f5ea982c43c43084496732365c3",
-      "src": "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
-    },
     "Ionide-vim": {
       "rev": "30aac182c9652f37b5ce65942e5cc32371595995",
       "src": "https://github.com/ionide/Ionide-vim"
@@ -29,10 +25,6 @@
       "rev": "979b6c82f60cfa80f4cf437d77446d0ded0addf0",
       "src": "https://github.com/Pocco81/auto-save.nvim"
     },
-    "blink-cmp-copilot": {
-      "rev": "439cff78780c033aa23cf061d7315314b347e3c1",
-      "src": "https://github.com/giuxtaposition/blink-cmp-copilot"
-    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
@@ -46,10 +38,6 @@
     "conform.nvim": {
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
-    },
-    "copilot.lua": {
-      "rev": "61784cb7a1a109d72b9cb107ee70d11bc7d095ff",
-      "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "fidget.nvim": {
       "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
@@ -72,10 +60,6 @@
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
-    "kanagawa.nvim": {
-      "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
-      "src": "https://github.com/rebelot/kanagawa.nvim"
-    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
@@ -96,6 +80,10 @@
     "mini.nvim": {
       "rev": "48555f1615f08c6318150aacb52bf7d61a5af798",
       "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "nvim": {
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-autopairs": {
       "rev": "59bce2eef357189c3305e25bc6dd2d138c1683f5",
@@ -126,11 +114,6 @@
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
-    "plenary.nvim": {
-      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
-      "src": "https://github.com/nvim-lua/plenary.nvim",
-      "version": "'master'"
-    },
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
@@ -138,10 +121,6 @@
     "suda.vim": {
       "rev": "c492741b4679b3cdd4d9e34138209784e061d916",
       "src": "https://github.com/lambdalisue/suda.vim"
-    },
-    "synthwave84.nvim": {
-      "rev": "eac1f349713e2f470d8ee857913a42135bcc1a7f",
-      "src": "https://github.com/lunarvim/synthwave84.nvim"
     },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
@@ -164,10 +143,6 @@
       "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
       "src": "https://github.com/mg979/vim-visual-multi",
       "version": "'master'"
-    },
-    "vim-wakatime": {
-      "rev": "24495fb7cc9613eaf0ce45540fb8d096a30d08e9",
-      "src": "https://github.com/wakatime/vim-wakatime"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
