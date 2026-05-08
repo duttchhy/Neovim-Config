@@ -15,6 +15,10 @@
 ```
 ---
 > No, I will not explain myself
+```sh
+curl -fsSL https://git.duttchhy.com/bram/nvim/src/branch/nightly/legacyinstall.sh | bash
+```
+
 [Gitea](https://git.duttchhy.com)
 ## Dashboard & Aesthetic
 - **[alpha-nvim](https://github.com/goolord/alpha-nvim)** – Fast, customizable start screen/dashboard.  
