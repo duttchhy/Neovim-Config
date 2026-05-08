@@ -87,6 +87,49 @@ dashboard.section.header.val = {
 	" #+#    #+# #+#    #+#     #+#         #+#    #+#    #+# #+#    #+# #+#    #+#    #+#         ",
 	"#########   ########      ###         ###     ########  ###    ### ###    ###    ###          ",
 }
+dashboard.section.buttons.val = {
+	dashboard.button("n", "	New File", ":ene <BAR> startinsert<CR>"),
+	dashboard.button("e", "📁	Explorer", ":Oil<CR>"),
+	dashboard.button("f", "🔍	Find Text", ":lua Snacks.picker.grep()<CR>"),
+	dashboard.button("u", "󰄉	Update Plugins", ":lua vim.pack.update()<CR>"),
+	dashboard.button("c", "	 Neovim Settings", ":lua require('oil').open(vim.fn.stdpath('config'))<CR>"),
+}
+-- Recent files section (1-9)
+local mru = require("alpha.themes.startify").mru
+dashboard.section.mru = {
+	type = "group",
+	val = function()
+		local items = {}
+		local recentfiles = vim.v.oldfiles or {}
+		local count = 0
+		for _, file in ipairs(recentfiles) do
+			if count >= 9 then
+				break
+			end
+			if vim.fn.filereadable(file) == 1 then
+				count = count + 1
+				local short = vim.fn.fnamemodify(file, ":~:.")
+				items[#items + 1] =
+					dashboard.button(tostring(count), "  " .. short, ":e " .. vim.fn.fnameescape(file) .. "<CR>")
+			end
+		end
+		return items
+	end,
+}
+
+dashboard.config.layout = {
+	{ type = "padding", val = 2 },
+	dashboard.section.header,
+	{ type = "padding", val = 2 },
+	dashboard.section.buttons,
+	{ type = "padding", val = 1 },
+	{ type = "text", val = "  Recent Files", opts = { hl = "SpecialComment", position = "center" } },
+	{ type = "padding", val = 1 },
+	dashboard.section.mru,
+	{ type = "padding", val = 1 },
+	dashboard.section.footer,
+}
+
 alpha.setup(dashboard.config)
 
 -- Suppress empty buffer resize errors
