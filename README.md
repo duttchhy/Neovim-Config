@@ -1,107 +1,160 @@
 # My Rice for Neovim
+
+```md
+      :::::::::  :::    ::: ::::::::::: ::::::::::: ::::::::  :::    ::: :::    ::: :::   :::
+     :+:    :+: :+:    :+:     :+:         :+:    :+:    :+: :+:    :+: :+:    :+: :+:   :+:
+    +:+    +:+ +:+    +:+     +:+         +:+    +:+        +:+    +:+ +:+    +:+  +:+ +:+
+   +#+    +:+ +#+    +:+     +#+         +#+    +#+        +#++:++#++ +#++:++#++   +#++:
+  +#+    +#+ +#+    +#+     +#+         +#+    +#+        +#+    +#+ +#+    +#+    +#+
+ #+#    #+# #+#    #+#     #+#         #+#    #+#    #+# #+#    #+# #+#    #+#    #+#
+#########   ########      ###         ###     ########  ###    ### ###    ###    ###
 ```
-      _____    ____   ____  _________________  _________________      _____    ____   ____  ____   ____  _____      _____ 
-  ___|\    \  |    | |    |/                 \/                 \ ___|\    \  |    | |    ||    | |    ||\    \    /    /|
- |    |\    \ |    | |    |\______     ______/\______     ______//    /\    \ |    | |    ||    | |    || \    \  /    / |
- |    | |    ||    | |    |   \( /    /  )/      \( /    /  )/  |    |  |    ||    |_|    ||    |_|    ||  \____\/    /  /
- |    | |    ||    | |    |    ' |   |   '        ' |   |   '   |    |  |____||    .-.    ||    .-.    | \ |    /    /  / 
- |    | |    ||    | |    |      |   |              |   |       |    |   ____ |    | |    ||    | |    |  \|___/    /  /  
- |    | |    ||    | |    |     /   //             /   //       |    |  |    ||    | |    ||    | |    |      /    /  /   
- |____|/____/||\___\_|____|    /___//             /___//        |\ ___\/    /||____| |____||____| |____|     /____/  /    
- |    /    | || |    |    |   |`   |             |`   |         | |   /____/ ||    | |    ||    | |    |    |`    | /     
- |____|____|/  \|____|____|   |____|             |____|          \|___|    | /|____| |____||____| |____|    |_____|/      
-   \(    )/       \(   )/       \(                 \(              \( |____|/   \(     )/    \(     )/         )/         
-    '    '         '   '         '                  '               '   )/       '     '      '     '          '          
-```
+
 ---
 > No, I will not explain myself
-[Gitea](https://git.duttchhy.com)
-## Dashboard & Aesthetic
-- **[alpha-nvim](https://github.com/goolord/alpha-nvim)** – Fast, customizable start screen/dashboard.  
-- **[catppuccin](https://github.com/catppuccin/nvim)** – Beautiful pastel theme with multiple flavors.  
-- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** – Fast and configurable status line.  
-- **[mini.icons](https://github.com/echasnovski/mini.nvim)** – Minimal icon support for UI components.  
-
-## Git & Version Control
-- **[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)** – Shows Git changes in the sign column.  
-
-## File Explorer & Navigation
-- **[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)** – File explorer tree with LSP and icon support.  
-- **[nui.nvim](https://github.com/MunifTanjim/nui.nvim)** – UI component library required by Neo-tree.  
-- **[nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** – File operations integrated with Neo-tree.  
-- **[nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker)** – Pick windows when performing operations.  
-- **[plenary.nvim](https://github.com/nvim-lua/plenary.nvim)** – Lua utilities used by Neo-tree and other plugins.  
-- **[undotree](https://github.com/mbbill/undotree)** – Undo history visualizer (`<leader>u` to toggle).  
-
-## LSP & Development
-- **[mason.nvim](https://github.com/williamboman/mason.nvim)** – Package manager for LSPs, DAPs, linters, and formatters.  
-- **[mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)** – Bridges Mason with nvim-lspconfig.  
-- **[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)** – Quickstart configurations for LSP servers.  
-
-## Syntax & Text Objects
-- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** – Incremental parsing and syntax highlighting.  
-- **[nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)** – Extra text objects for Treesitter.  
-- **[nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)** – Auto-close and rename HTML/JSX tags.  
-- **[nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)** – Context-aware comment strings.  
-- **[playground](https://github.com/nvim-treesitter/playground)** – Treesitter playground for exploring syntax trees.  
-
-## Fuzzy Finding & Utilities
-- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** – Highly extendable fuzzy finder.  
-- **[snacks.nvim](https://github.com/folke/snacks.nvim)** – Miscellaneous utilities: image previews, dashboards, pickers, etc.  
-- **[which-key.nvim](https://github.com/folke/which-key.nvim)** – Displays available keybindings in a popup.  
-
-## Icons
-- **[nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** – File type icons for statuslines, trees, and more.  
 ---
-## Dependencies
- - ripgrep
- - Luarocks
- - cmake
- - git
- - python3
- - cargo
- - javac
 
-### Steps to Install from source:
-```sh
-#Download prereqs
-sudo apt update -y && sudo apt upgrade -y
-sudo apt install curl ripgrep fd-find wget fontconfig git unzip cmake cargo luarocks python3 tar -y
+## Requirements
 
-# Directory setup
-mkdir -p ~/.config && cd ~/.config
-cargo install --locked tree-sitter-cli
+- **Neovim 0.12+** (uses native `vim.pack` package manager — no lazy.nvim)
+- A **Nerd Font** (Ubuntu Nerd Font used in install script below)
+- `ripgrep` — for live grep search
+- `git`
+- `make` — for LuaSnip jsregexp build
+- `cwebp` — optional, for img-clip image paste (webp conversion)
 
-# remove old /opt/nvim, extract new version, and symlink again
-rm -rf /opt/nvim
-# download new AppImage
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-# add execute permissions
-sudo chmod u+x nvim-linux-x86_64.appimage
-# Use App image extract if outdate FUSE
-./nvim-linux-x86_64.appimage --appimage-extract
-# Install it
-mv squashfs-root /opt/nvim
-# Symlink
-ln -sf /opt/nvim/AppRun /usr/local/bin/nvim
-git clone https://git.duttchhy.com/bram/nvim.git && cd nvim
+---
 
-# Lazygit
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t /usr/local/bin/
+## Structure
 
-# Nerd font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Ubuntu.zip
-mkdir -p ~/.local/share/fonts
-unzip Ubuntu.zip -d ~/.local/share/fonts/Ubuntu
-fc-cache -fv
-rm Ubuntu.zip
-
-# Clean up
-sudo apt autoremove -y && sudo apt autoclean -y
 ```
+~/.config/nvim/
+├── init.lua                  # Options, globals, bootstrap
+├── lua/
+│   └── keymaps.lua           # All personal keymaps
+└── plugin/                   # Auto-sourced plugin configs
+    ├── catppuccin.lua         # Colorscheme
+    ├── snacks.lua             # Picker, explorer, zen, grep
+    ├── ui.lua                 # Dashboard, bufferline, statusline, oil, toggleterm, trouble, aerial
+    ├── lsp.lua                # LSP, Mason, conform (formatter), fidget
+    ├── completion.lua         # blink.cmp, LuaSnip, lazydev
+    ├── editor.lua             # Autopairs, lint, highlights, autosave, todo-comments, undotree, etc.
+    ├── git.lua                # Gitsigns
+    ├── syntax.lua             # Treesitter-context
+    ├── markdown.lua           # Markview, VimTeX
+    └── opencode.lua           # opencode.nvim AI assistant
+```
+
 ---
 
+## Plugins
+
+### Aesthetic & UI
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [catppuccin](https://github.com/catppuccin/nvim) | Catppuccin Mocha colorscheme | `plugin/catppuccin.lua` |
+| [alpha-nvim](https://github.com/goolord/alpha-nvim) | Dashboard with recent files | `plugin/ui.lua` |
+| [mini.statusline](https://github.com/echasnovski/mini.nvim) | Statusline with rounded separators | `plugin/ui.lua` |
+| [mini.icons](https://github.com/echasnovski/mini.nvim) | Icon support | `plugin/ui.lua` |
+| [mini.ai](https://github.com/echasnovski/mini.nvim) | Extended text objects | `plugin/ui.lua` |
+| [mini.surround](https://github.com/echasnovski/mini.nvim) | Surround motions | `plugin/ui.lua` |
+| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | VSCode-style buffer tabs | `plugin/ui.lua` |
+| [which-key.nvim](https://github.com/folke/which-key.nvim) | Keybind hint popup | `plugin/ui.lua` |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides | `plugin/editor.lua` |
+| [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) | Inline colour previews | `plugin/editor.lua` |
+
+### Navigation & Files
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [snacks.nvim](https://github.com/folke/snacks.nvim) | Picker, file explorer, grep, zen mode | `plugin/snacks.lua` |
+| [oil.nvim](https://github.com/stevearc/oil.nvim) | Edit filesystem like a buffer | `plugin/ui.lua` |
+| [aerial.nvim](https://github.com/stevearc/aerial.nvim) | Symbol outline sidebar | `plugin/ui.lua` |
+| [undotree](https://github.com/mbbill/undotree) | Undo history tree (`<F5>`) | `plugin/editor.lua` |
+
+### LSP & Completion
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP server configurations | `plugin/lsp.lua` |
+| [mason.nvim](https://github.com/williamboman/mason.nvim) | LSP/formatter/linter installer | `plugin/lsp.lua` |
+| [conform.nvim](https://github.com/stevearc/conform.nvim) | Formatter (`<leader>=`) | `plugin/lsp.lua` |
+| [fidget.nvim](https://github.com/j-hui/fidget.nvim) | LSP progress notifications | `plugin/lsp.lua` |
+| [blink.cmp](https://github.com/saghen/blink.cmp) | Fast completion engine | `plugin/completion.lua` |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine | `plugin/completion.lua` |
+| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Neovim Lua API completions | `plugin/completion.lua` |
+
+### Editor Utilities
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-close brackets/quotes | `plugin/editor.lua` |
+| [nvim-lint](https://github.com/mfussenegger/nvim-lint) | Async linting | `plugin/editor.lua` |
+| [auto-save.nvim](https://github.com/Pocco81/auto-save.nvim) | Auto-save on idle | `plugin/editor.lua` |
+| [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim) | Auto-detect indentation | `plugin/editor.lua` |
+| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlight TODO/FIXME/etc | `plugin/editor.lua` |
+| [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Smart commenting (`<leader>/`) | `plugin/editor.lua` |
+| [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim) | Paste images into markdown (`<leader>p`) | `plugin/editor.lua` |
+| [suda.vim](https://github.com/lambdalisue/suda.vim) | Edit files with sudo (`:SudaWrite`) | `plugin/editor.lua` |
+| [vim-visual-multi](https://github.com/mg979/vim-visual-multi) | Multi-cursor (`<C-n>`) | `plugin/editor.lua` |
+| [trouble.nvim](https://github.com/folke/trouble.nvim) | Diagnostics panel (`<leader>xx`) | `plugin/ui.lua` |
+
+### Git
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git signs, hunk actions, blame | `plugin/git.lua` |
+
+### Syntax
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | Sticky function/class context | `plugin/syntax.lua` |
+
+### Language Specific
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [markview.nvim](https://github.com/OXY2DEV/markview.nvim) | Rich markdown preview (`<C-s>M`) | `plugin/markdown.lua` |
+| [vimtex](https://github.com/lervag/vimtex) | LaTeX editing (Zathura viewer) | `plugin/markdown.lua` |
+
+### AI
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [opencode.nvim](https://github.com/nickjvandyke/opencode.nvim) | opencode AI assistant integration | `plugin/opencode.lua` |
+
+### Terminal
+| Plugin | Purpose | Config |
+|--------|---------|--------|
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Toggle terminal (`<C-\`>`) | `plugin/ui.lua` |
+
+---
+
+## Key Bindings (Highlights)
+
+> Full keybind reference is in `Cheatsheet.md`
+
+| Key | Action |
+|-----|--------|
+| `<leader>e` | Open file explorer (Oil) |
+| `<leader>o` | Open Oil as floating window |
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep |
+| `<leader>sw` | Search word under cursor |
+| `<leader>=` | Format buffer |
+| `<leader>xx` | Toggle diagnostics panel |
+| `<leader>b1`–`b9` | Go to buffer 1–9 |
+| `<leader>bq` | Close buffer (save prompt) |
+| `<C-j>` / `<C-k>` | Scroll half page down/up |
+| `<C-\`>` | Toggle terminal |
+| `<F5>` | Toggle undotree |
+| `<leader>/` | Toggle comment |
+| `go` / `goo` | Add range/line to opencode |
+| `<leader>at` | Toggle opencode |
+
+---
+
+## Install
+### Debian 11-12
+```sh
+curl -fsSL https://git.duttchhy.com/bram/nvim/raw/branch/nightly/legacyinstall.sh
+```
+### Anything Newer
+```sh
+Use your package manager
+```
 
