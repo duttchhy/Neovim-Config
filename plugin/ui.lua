@@ -18,6 +18,8 @@ vim.pack.add({
 	"https://github.com/stevearc/oil.nvim",
 	-- Integrated terminal toggled with Ctrl+`
 	{ src = "https://github.com/akinsho/toggleterm.nvim", version = vim.version.range("*") },
+	--NVIM Tree
+	"https://github.com/nvim-tree/nvim-tree.lua",
 })
 
 -- which-key
@@ -192,7 +194,7 @@ vim.keymap.set("n", "<leader>o", oil.toggle_float, { desc = "Toggle oil float (f
 -- toggleterm
 require("toggleterm").setup({
 	size = 15,
-	direction = "horizontal",
+
 	shade_terminals = true,
 })
 vim.keymap.set("n", "<C-`>", function()
@@ -203,3 +205,7 @@ vim.keymap.set("n", "<C-`>", function()
 	end
 	vim.cmd("ToggleTerm dir=" .. vim.fn.fnameescape(dir))
 end, { desc = "Toggle terminal (buffer directory)" })
+
+-- NVIM-Tree
+require("nvim-tree").setup()
+vim.keymap.set("n", "\\", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })

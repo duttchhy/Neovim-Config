@@ -4,10 +4,10 @@ vim.pack.add({
 })
 
 require("catppuccin").setup({
-	flavour = "mocha",
+	flavour = "frappe",
 	background = {
 		light = "latte",
-		dark = "mocha",
+		dark = "frappe",
 	},
 	transparent_background = false,
 	show_end_of_buffer = true,
