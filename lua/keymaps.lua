@@ -170,7 +170,7 @@ keymap("n", "<A-q>", "<cmd>tabclose<CR>", vim.tbl_extend("force", opts, { desc =
 -- ============================================================
 -- Diagnostics (CTT addition)
 -- ============================================================
-keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+keymap("n", "<leader>xq", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
 -- ============================================================
 -- Terminal (CTT addition)
@@ -180,7 +180,7 @@ keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- ============================================================
 -- Tools & Plugins (CTT additions)
 -- ============================================================
-keymap("n", "<leader>a", ":Alpha<CR>", vim.tbl_extend("force", opts, { desc = "Open Alpha dashboard" }))
+keymap("n", "<leader>A", ":Alpha<CR>", vim.tbl_extend("force", opts, { desc = "Open Alpha dashboard" }))
 keymap("n", "<leader>p", "<cmd>PasteImage<CR>", vim.tbl_extend("force", opts, { desc = "Paste image from clipboard" }))
 keymap(
 	"n",

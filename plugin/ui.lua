@@ -88,11 +88,12 @@ dashboard.section.header.val = {
 	"#########   ########      ###         ###     ########  ###    ### ###    ###    ###          ",
 }
 dashboard.section.buttons.val = {
-	dashboard.button("n", "	New File", ":ene <BAR> startinsert<CR>"),
+	dashboard.button("n", " 	New File", ":ene <BAR> startinsert<CR>"),
 	dashboard.button("e", "📁	Explorer", ":Oil<CR>"),
 	dashboard.button("f", "🔍	Find Text", ":lua Snacks.picker.grep()<CR>"),
-	dashboard.button("u", "󰄉	Update Plugins", ":lua vim.pack.update()<CR>"),
-	dashboard.button("c", "	 Neovim Settings", ":lua require('oil').open(vim.fn.stdpath('config'))<CR>"),
+	dashboard.button("u", "󰄉 	Update Plugins", ":lua vim.pack.update()<CR>"),
+	dashboard.button("c", " 	Neovim Settings", ":lua require('oil').open(vim.fn.stdpath('config'))<CR>"),
+	dashboard.button("q", "q	Quit Neovim", ":q!<CR>"),
 }
 -- Recent files section (1-9)
 local mru = require("alpha.themes.startify").mru

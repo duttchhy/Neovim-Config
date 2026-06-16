@@ -7,7 +7,24 @@ vim.pack.add({
 ---@type snacks.Config
 require("snacks").setup({
 	explorer = { enabled = true },
-	picker = { enabled = true },
+	-- input: enhances opencode.nvim's ask() prompt
+	input = { enabled = true },
+	picker = {
+		enabled = true,
+		-- opencode.nvim: send selected file/item to opencode via <A-a>
+		actions = {
+			opencode_send = function(...)
+				return require("opencode").snacks_picker_send(...)
+			end,
+		},
+		win = {
+			input = {
+				keys = {
+					["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+				},
+			},
+		},
+	},
 	project = {
 		dirs = {
 			"~/github",
@@ -42,7 +59,7 @@ map("n", "<leader>fe", function()
 end, { desc = "[F]iles [E]xplorer open tree" })
 map("n", "<leader>ff", function()
 	Snacks.picker.smart()
-end, { desc = "[S]earch [F]iles" })
+end, { desc = "[S]earch [F]iles smart" })
 map("n", "<leader>ss", function()
 	Snacks.picker.pickers()
 end, { desc = "[S]earch [S]elect Snacks" })
@@ -63,10 +80,10 @@ map("n", "<leader>sr", function()
 end, { desc = "[S]earch [R]esume" })
 map("n", "<leader>s.", function()
 	Snacks.picker.recent()
-end, { desc = '[S]earch Recent Files ("." for repeat)' })
+end, { desc = "[S]earch Recent Files" })
 map("n", "<leader><leader>", function()
-	Snacks.picker.buffers()
-end, { desc = "[ ] Find existing buffers" })
+	Snacks.picker.grep()
+end, { desc = "[ ] Fuzzy find" })
 map("n", "<leader>/", function()
 	Snacks.picker.lines({})
 end, { desc = "[/] Fuzzily search in current buffer" })

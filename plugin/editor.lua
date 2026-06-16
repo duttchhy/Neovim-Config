@@ -8,8 +8,8 @@ vim.pack.add({
 	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	-- Linting
 	"https://github.com/mfussenegger/nvim-lint",
-	-- Color highlighting
-	"https://github.com/brenoprata10/nvim-highlight-colors",
+	-- Color highlighting (replaces nvim-highlight-colors which has a nil-table bug)
+	"https://github.com/NvChad/nvim-colorizer.lua",
 	-- Auto-save
 	"https://github.com/Pocco81/auto-save.nvim",
 	-- Auto-detect tab/space indentation
@@ -49,8 +49,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 	end,
 })
 
--- nvim-highlight-colors
-require("nvim-highlight-colors").setup({ render = "background" })
+-- nvim-colorizer
+require("colorizer").setup({
+	user_default_options = { mode = "background" },
+})
 
 -- auto-save
 require("auto-save").setup({})

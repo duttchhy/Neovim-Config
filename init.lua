@@ -139,9 +139,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
-		vim.hl.on_yank()
+		vim.hl.hl_op()
 	end,
 })
+
+-- ###################
+-- Unnecesary Plugins
+-- ###################
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- [[ Plugins ]]
 -- Plugin files live in plugin/ and are sourced automatically by Neovim.
