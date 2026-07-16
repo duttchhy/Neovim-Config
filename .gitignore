@@ -3,3 +3,4 @@ lazy-lock.json
 .Rhistory
 stylua.toml
 .github
+nvim-pack-lock.json

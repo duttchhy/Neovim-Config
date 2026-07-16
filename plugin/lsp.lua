@@ -3,9 +3,9 @@
 vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	{ src = "https://github.com/mason-org/mason.nvim", version = "main" },
+	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 	{ src = "https://github.com/j-hui/fidget.nvim", version = "main" },
-	-- Autoformat on save
 	"https://github.com/stevearc/conform.nvim",
 })
 
@@ -37,7 +37,11 @@ end, { desc = "[F]ormat buffer" })
 
 -- LSP servers to configure
 local servers = {
-	-- clangd = {}, gopls = {}, pyright = {}, rust_analyzer = {}, ts_ls = {}
+	clangd = {},
+	kotlin_lsp = {},
+	pyright = {},
+	rust_analyzer = {},
+	jls = {},
 	lua_ls = {
 		settings = { Lua = { completion = { callSnippet = "Replace" } } },
 	},
