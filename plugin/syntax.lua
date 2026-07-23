@@ -9,6 +9,9 @@ require("treesitter-context").setup({ max_lines = 3 })
 local parsers_to_install = {
 	"css",
 	"html",
+	"go",
+	"python",
+	"java",
 	"javascript",
 	"typescript",
 	"json",

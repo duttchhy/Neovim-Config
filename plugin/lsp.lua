@@ -41,6 +41,7 @@ local servers = {
 	kotlin_lsp = {},
 	pyright = {},
 	rust_analyzer = {},
+	gopls = {},
 	jls = {},
 	lua_ls = {
 		settings = { Lua = { completion = { callSnippet = "Replace" } } },

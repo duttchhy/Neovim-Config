@@ -20,6 +20,8 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/toggleterm.nvim", version = vim.version.range("*") },
 	--NVIM Tree
 	"https://github.com/nvim-tree/nvim-tree.lua",
+	-- Integrated terminal
+	{ src = "https://github.com/akinsho/toggleterm.nvim", version = vim.version.range("*") },
 })
 
 -- which-key
@@ -191,6 +193,9 @@ vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory (oil)" })
 vim.keymap.set("n", "<leader>e", oil.open, { desc = "Open file explorer (oil)" })
 vim.keymap.set("n", "<leader>o", oil.toggle_float, { desc = "Toggle oil float (floating window)" })
 
+-- NVIM-Tree
+require("nvim-tree").setup()
+vim.keymap.set("n", "\\", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
 -- toggleterm
 require("toggleterm").setup({
 	size = 15,
@@ -206,6 +211,73 @@ vim.keymap.set("n", "<C-`>", function()
 	vim.cmd("ToggleTerm dir=" .. vim.fn.fnameescape(dir))
 end, { desc = "Toggle terminal (buffer directory)" })
 
--- NVIM-Tree
-require("nvim-tree").setup()
-vim.keymap.set("n", "\\", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
+-- run current file (<leader>r) — like VS Code/Zed's "run" button
+local Terminal = require("toggleterm.terminal").Terminal
+
+-- NOTE: vim.fn.expand() only expands "%:p" etc. when that's the WHOLE string
+-- passed to it, not when embedded inside a longer command like "go run %:p".
+-- So each runner is a function that builds the command from already-expanded
+-- fields, instead of a template string handed to expand().
+local runners = {
+	python = function(f)
+		return "python3 " .. f.file
+	end,
+	javascript = function(f)
+		return "node " .. f.file
+	end,
+	typescript = function(f)
+		return "npx ts-node " .. f.file
+	end,
+	lua = function(f)
+		return "lua " .. f.file
+	end,
+	sh = function(f)
+		return "bash " .. f.file
+	end,
+	rust = function(f)
+		return "cd " .. f.dir .. " && rustc " .. f.name .. " -o /tmp/" .. f.noext .. " && /tmp/" .. f.noext
+	end,
+	c = function(f)
+		return "gcc " .. f.file .. " -o /tmp/" .. f.noext .. " && /tmp/" .. f.noext
+	end,
+	cpp = function(f)
+		return "g++ " .. f.file .. " -o /tmp/" .. f.noext .. " && /tmp/" .. f.noext
+	end,
+	go = function(f)
+		return "go run " .. f.file
+	end,
+	java = function(f)
+		return "cd " .. f.dir .. " && javac " .. f.name .. " && java " .. f.noext
+	end,
+}
+
+local run_term -- keep a handle so repeated runs reuse one split instead of stacking
+
+vim.keymap.set("n", "<leader>r", function()
+	local ft = vim.bo.filetype
+	local build_cmd = runners[ft]
+	if not build_cmd then
+		vim.notify("No run command configured for filetype: " .. ft, vim.log.levels.WARN)
+		return
+	end
+
+	vim.cmd("write") -- save before running
+
+	local fields = {
+		file = vim.fn.expand("%:p"),
+		dir = vim.fn.expand("%:p:h"),
+		name = vim.fn.expand("%:t"),
+		noext = vim.fn.expand("%:t:r"),
+	}
+
+	if run_term then
+		run_term:close() -- hide the previous run's window
+	end
+
+	run_term = Terminal:new({
+		cmd = build_cmd(fields),
+		direction = "horizontal",
+		close_on_exit = false, -- leave output visible after it finishes
+	})
+	run_term:open()
+end, { desc = "Run current file" })
